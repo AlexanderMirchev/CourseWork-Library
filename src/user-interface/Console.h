@@ -6,19 +6,23 @@
 
 #include <utility>
 
-#include"../entities/Book.h"
-#include"../entities/User.h"
+#include "../entities/Book.h"
+#include "../entities/User.h"
 class Console
 {
-private:
-    /* data */
 public:
-    Console(/* args */);
-    ~Console();
+    /*
+        Separates a string into words and ignores trailing spaces
+    */
+    const std::vector<std::string> readInput(const std::string &line);
 
-    void start();
-    const std::vector<std::string> readInput();
+    /*
+        Overloaded function to display message onto console
+    */
+    void display(const std::string& caseTitle, const std::vector<Book>& result);
 
-    void display(std::vector<Book>);
+    void display(const std::string& caseTitle, const Book& result);
+
+    void display(const std::string& caseTitle, const std::string& result);
 };
 #endif

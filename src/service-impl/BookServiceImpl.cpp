@@ -1,6 +1,6 @@
 #include "BookServiceImpl.h"
 
-BookServiceImpl::BookServiceImpl(std::unique_ptr<BookRepository> bookRepository)
+BookServiceImpl::BookServiceImpl(std::unique_ptr<BookRepository> &&bookRepository)
     : bookRepository{std::move(bookRepository)} {}
 
 void BookServiceImpl::openFile(const std::string &fileName)
@@ -63,13 +63,14 @@ const std::vector<Book> BookServiceImpl::sortBooksBy(const std::string &option, 
     return booksNewOrder;
 }
 
-const std::vector<Book> BookServiceImpl::sortBooksBy(const std::string &option) {
+const std::vector<Book> BookServiceImpl::sortBooksBy(const std::string &option)
+{
     sortBooksBy(option, "asc");
 }
 
-BookServiceImpl::Filter BookServiceImpl::getFilterFromOption(const std::string &option) const
+BookServiceImpl::Filter BookServiceImpl::getFilterFromOption(const std::string &option)
 {
-    OptionToFilterMap::iterator mapEntry = optionToFilterMap.find(option);
+    OptionToFilterMap::const_iterator mapEntry = optionToFilterMap.find(option);
     if (mapEntry == optionToFilterMap.end())
     {
         throw;
@@ -78,9 +79,9 @@ BookServiceImpl::Filter BookServiceImpl::getFilterFromOption(const std::string &
 }
 
 BookServiceImpl::Comparator BookServiceImpl::getComparatorFromOption(
-    const std::string &option) const
+    const std::string &option)
 {
-    OptionToComparatorMap::iterator mapEntry = optionToComparatorMap.find(option);
+    OptionToComparatorMap::const_iterator mapEntry = optionToComparatorMap.find(option);
     if (mapEntry == optionToComparatorMap.end())
     {
         throw;
@@ -88,7 +89,7 @@ BookServiceImpl::Comparator BookServiceImpl::getComparatorFromOption(
     return mapEntry->second;
 }
 
-bool BookServiceImpl::getOrderFromString(const std::string &ascdesc) const
+bool BookServiceImpl::getOrderFromString(const std::string &ascdesc)
 {
     if (ascdesc == "asc")
     {
@@ -104,7 +105,7 @@ bool BookServiceImpl::getOrderFromString(const std::string &ascdesc) const
     }
 }
 
-BookServiceImpl::OptionToFilterMap BookServiceImpl::optionToFilterMap = {
+const BookServiceImpl::OptionToFilterMap BookServiceImpl::optionToFilterMap = {
     {"title", [](const Book &book,
                  const std::string &optionString) { return optionString == book.getTitle(); }},
     {"author", [](const Book &book,
@@ -122,7 +123,7 @@ BookServiceImpl::OptionToFilterMap BookServiceImpl::optionToFilterMap = {
      }},
 };
 
-BookServiceImpl::OptionToComparatorMap BookServiceImpl::optionToComparatorMap = {
+const BookServiceImpl::OptionToComparatorMap BookServiceImpl::optionToComparatorMap = {
     {"title", [](const Book &book1,
                  const Book &book2) { return book1.getTitle().compare(book2.getTitle()) < 0; }},
     {"author", [](const Book &book1,

@@ -1,4 +1,4 @@
-// #include <iostream>
+#include <iostream>
 #include "Book.h"
 
 Book::Book(const std::string &author, const std::string &title, const std::string &genre,
@@ -72,19 +72,6 @@ void Book::stringToObject(const std::string &string)
     this->ISBN = values[iterator++];
 }
 
-// std::ostream& operator << (std::ostream& out, const Book& book) {
-//     out << book.author << std::endl;
-//     out << book.title << std::endl;
-//     out << book.genre << std::endl;
-//     out << book.description << std::endl;
-//     out << book.year << std::endl;
-//     for(const std::string& str: book.tags) {
-//         out << str << std::endl;
-//     }
-//     out << book.rating << std::endl;
-//     out << book.ISBN << std::endl;
-// }
-
 const std::string &Book::getTitle() const
 {
     return this->title;
@@ -109,4 +96,26 @@ const double Book::getRating() const
 const std::string &Book::getISBN() const
 {
     return this->ISBN;
+}
+void Book::print(bool detailed) const
+{
+    if (detailed)
+    {
+        std::cout << "Title: " << this->title;
+        std::cout << "\nAuthor: " << this->author;
+        std::cout << "\nYear: " << this->year;
+        std::cout << "\nGenre: " << this->genre;
+        std::cout << "\nDescription: " << this->description;
+        std::cout << "\nTags: ";
+        for (const std::string &tag : this->tags)
+        {
+            std::cout << tag << " ";
+        }
+        std::cout << "\nRating: " << this->rating;
+        std::cout << "\nISBN: " << this->ISBN << std::endl;
+    }
+    else
+    {
+        std::cout << this->title <<  " by " << this->author << std::endl;
+    }
 }

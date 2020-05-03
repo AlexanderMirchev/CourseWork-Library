@@ -33,7 +33,7 @@ public:
 
     const std::vector<Book> sortBooksBy(const std::string &option) override;
 
-    BookServiceImpl(std::unique_ptr<BookRepository> bookRepository);
+    BookServiceImpl(std::unique_ptr<BookRepository> &&bookRepository);
 
 private:
     using Filter = std::function<bool(const Book &, const std::string &)>;
@@ -45,11 +45,11 @@ private:
         Map keeping pairs of type <option, filter>
     */
 
-    Filter getFilterFromOption(const std::string &) const;
-    Comparator getComparatorFromOption(const std::string &) const;
-    bool getOrderFromString(const std::string &) const;
+    static Filter getFilterFromOption(const std::string &);
+    static Comparator getComparatorFromOption(const std::string &);
+    static bool getOrderFromString(const std::string &);
 
-    static OptionToComparatorMap optionToComparatorMap;
-    static OptionToFilterMap optionToFilterMap;
+    static const OptionToComparatorMap optionToComparatorMap;
+    static const OptionToFilterMap optionToFilterMap;
 };
 #endif

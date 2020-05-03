@@ -54,6 +54,11 @@ public:
     */
     const std::string &getISBN() const;
 
+    /*
+        Outputs to console
+    */
+    void print(bool detailed) const;
+
     Book(const std::string &, const std::string &, const std::string &,
          const std::string &, const int, const std::vector<std::string> &,
          const double, const std::string &);
@@ -69,7 +74,5 @@ public:
     Book(Book &&);
 
     Book &operator=(Book &&);
-
-    // friend std::ostream& operator << (std::ostream& out, const Book& book);
 };
 #endif
