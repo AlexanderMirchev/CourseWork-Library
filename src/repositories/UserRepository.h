@@ -1,5 +1,5 @@
-#ifndef _USERREPOSITORY_HH
-#define _USERREPOSITORY_HH
+#ifndef USERREPOSITORY_H
+#define USERREPOSITORY_H
 
 #include <optional>
 #include <string>

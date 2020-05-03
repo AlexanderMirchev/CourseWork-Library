@@ -1,5 +1,5 @@
-#ifndef _BOOKSERVICE_HH
-#define _BOOKSERVICE_HH
+#ifndef BOOKSERVICE_H
+#define BOOKSERVICE_H
 
 #include <optional>
 #include <string>

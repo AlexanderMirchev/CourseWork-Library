@@ -1,5 +1,5 @@
-#ifndef _CONTROLLER_HH
-#define _CONTROLLER_HH
+#ifndef _CONTROLLER_H
+#define _CONTROLLER_H
 
 #include <memory>
 #include <utility>

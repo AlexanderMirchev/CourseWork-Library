@@ -1,5 +1,5 @@
-#ifndef _BOOKPOSITORYIMPL_HH
-#define _BOOKPOSITORYIMPL_HH
+#ifndef BOOKPOSITORYIMPL_H
+#define BOOKPOSITORYIMPL_H
 
 #include "EntitySerializer.h"
 

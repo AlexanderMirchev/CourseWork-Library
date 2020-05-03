@@ -1,5 +1,5 @@
-#ifndef _USERSERVICEIMPL_HH
-#define _USERSERVICEIMPL_HH
+#ifndef USERSERVICEIMPL_H
+#define USERSERVICEIMPL_H
 
 #include <memory>
 

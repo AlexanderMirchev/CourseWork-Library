@@ -1,5 +1,5 @@
-#ifndef _SERIALIZABLE_HH
-#define _SERIALIZABLE_HH
+#ifndef SERIALIZABLE_H
+#define SERIALIZABLE_H
 
 #include <functional>
 #include <string>

@@ -1,5 +1,5 @@
-#ifndef _BOOKREPOSITORY_HH
-#define _BOOKREPOSITORY_HH
+#ifndef BOOKREPOSITORY_H
+#define BOOKREPOSITORY_H
 
 #include <functional>
 #include <optional>

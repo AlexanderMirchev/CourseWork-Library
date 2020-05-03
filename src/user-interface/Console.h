@@ -1,8 +1,11 @@
-#ifndef _CONSOLE_HH
-#define _CONSOLE_HH
+#ifndef CONSOLE_H
+#define CONSOLE_H
 
 #include <string>
 #include <vector>
+#include <memory>
+
+#include "ResultWrappers.cpp"
 
 #include <utility>
 
@@ -19,10 +22,6 @@ public:
     /*
         Overloaded function to display message onto console
     */
-    void display(const std::string& caseTitle, const std::vector<Book>& result);
-
-    void display(const std::string& caseTitle, const Book& result);
-
-    void display(const std::string& caseTitle, const std::string& result);
+    void display(const std::string& caseTitle, const std::unique_ptr<Result>& result);
 };
 #endif

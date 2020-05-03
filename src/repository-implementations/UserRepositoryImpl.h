@@ -1,5 +1,5 @@
-#ifndef _USERREPOSITORYIMPL_HH
-#define _USERREPOSITORYIMPL_HH
+#ifndef USERREPOSITORYIMPL_H
+#define USERREPOSITORYIMPL_H
 
 #include "EntitySerializer.h"
 

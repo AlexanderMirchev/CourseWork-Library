@@ -23,4 +23,6 @@ const std::vector<std::string> readInput(const std::string &line)
     return resCommandList;
 }
 
-void display(std::vector<Book>);
+void Console::display(const std::string& caseTitle, const std::unique_ptr<Result>& result) {
+    result->display();
+}

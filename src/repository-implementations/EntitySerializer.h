@@ -1,5 +1,5 @@
-#ifndef _ENTITYSERIALIZER_HH
-#define _ENTITYSERIALIZER_HH
+#ifndef ENTITYSERIALIZER_H
+#define ENTITYSERIALIZER_H
 
 #include <fstream>
 #include <string>

@@ -1,5 +1,5 @@
-#ifndef _BOOKSERVICEIMPL_HH
-#define _BOOKSERVICEIMPL_HH
+#ifndef BOOKSERVICEIMPL_H
+#define BOOKSERVICEIMPL_H
 
 #include <memory>
 #include <map>

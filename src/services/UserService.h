@@ -1,5 +1,5 @@
-#ifndef _USERSERVICE_HH
-#define _USERSERVICE_HH
+#ifndef USERSERVICE_H
+#define USERSERVICE_H
 
 #include <optional>
 #include <string>
