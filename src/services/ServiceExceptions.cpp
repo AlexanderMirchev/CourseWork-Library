@@ -5,7 +5,7 @@
 */
 struct ServiceException : public std::exception
 {
-    virtual ~ServiceException();
+    virtual ~ServiceException() = default;
 
     virtual const char *what() const throw() = 0;
 };

@@ -81,7 +81,7 @@ const std::string &Book::getAuthor() const
 {
     return this->author;
 }
-const int Book::getYear() const
+const int &Book::getYear() const
 {
     return this->year;
 }
@@ -89,7 +89,7 @@ const std::vector<std::string> &Book::getTags() const
 {
     return this->tags;
 }
-const double Book::getRating() const
+const double &Book::getRating() const
 {
     return this->rating;
 }

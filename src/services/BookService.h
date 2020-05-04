@@ -75,7 +75,7 @@ public:
         Throws InvalidOptionException if option is not a valid field.
     */
     virtual const std::vector<Book> sortBooksBy(
-        const std::string &option, const std::string &ascdesc);
+        const std::string &option, const std::string &ascdesc) = 0;
 
     /*
         Returns all books sorted by option in ascending(by default) order
@@ -83,6 +83,6 @@ public:
         Throws NoOpenFileException if no file is open.
         Throws InvalidOptionException if option is not a valid field.
     */
-    virtual const std::vector<Book> sortBooksBy(const std::string &option);
+    virtual const std::vector<Book> sortBooksBy(const std::string &option) = 0;
 };
 #endif

@@ -12,7 +12,7 @@ class BookRepository
 {
 
 public:
-    virtual ~BookRepository();
+    virtual ~BookRepository() = default;
 
     /*
         Sets input/output file for repository.

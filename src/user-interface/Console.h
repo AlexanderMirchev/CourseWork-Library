@@ -22,6 +22,6 @@ public:
     /*
         Overloaded function to display message onto console
     */
-    void display(const std::string& caseTitle, const std::unique_ptr<Result>& result);
+    void display(const std::unique_ptr<Result>& result);
 };
 #endif

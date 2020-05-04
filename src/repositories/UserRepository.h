@@ -11,7 +11,7 @@ class UserRepository
 {
 
 public:
-    virtual ~UserRepository();
+    virtual ~UserRepository() = default;
 
     /*
         Writes current list of users to file.

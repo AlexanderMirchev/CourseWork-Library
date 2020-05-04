@@ -23,6 +23,6 @@ const std::vector<std::string> readInput(const std::string &line)
     return resCommandList;
 }
 
-void Console::display(const std::string& caseTitle, const std::unique_ptr<Result>& result) {
+void Console::display(const std::unique_ptr<Result>& result) {
     result->display();
 }

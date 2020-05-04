@@ -1,45 +1,90 @@
-# Used as template for good practice
-# https://www2.cs.duke.edu/courses/cps108/spring04/resources/makefiles/sample.html
+# output binary
+BIN := library.out
 
-CXX = g++
+# source files
+SRCDIR := src
+SRCS := $(wildcard $(SRCDIR)/*.cpp) $(wildcard $(SRCDIR)/*/*.cpp)
 
-STD_VERSION = -std=c++17
-DEBUG_LEVEL = -g
-WARNINGS_ALL = -Wall
-FSANITIZE_ADDRESS = -fsanitize=address
-CXXFLAGS =  $(STD_VERSION) $(DEBUG_LEVEL) $(WARNINGS_ALL) $(FSANITIZE_ADDRESS)
+# intermediate directory for generated object files
+OBJDIR := obj
+# intermediate directory for generated dependency files
+DEPDIR := obj
 
-OBJ_DIR = bin
-SRC_DIR = src
+# object files, auto generated from source files
+OBJS := $(patsubst $(SRCDIR)/%.cpp,$(OBJDIR)/%.o,$(SRCS))
+# dependency files, auto generated from source files
+DEPS := $(patsubst $(SRCDIR)/%.cpp,$(DEPDIR)/%.o,$(SRCS))
 
-SRC_FILES := $(wildcard $(SRC_DIR)/*/*.cpp) $(wildcard $(SRC_DIR)/*.cpp)
-OBJ_FILES := $(SRC_FILES:  $(SRC_DIR)/%.cpp = $(OBJ_DIR)/%.o)
+# compilers (at least gcc and clang) don't create the subdirectories automatically
+$(shell mkdir -p $(OBJDIR))
+$(shell mkdir -p $(DEPDIR))
 
-library: $(OBJ_FILES)
-	$(CXX) $(CXXFLAGS) -o $@ $^
+# C compiler
+CC := clang
+# C++ compiler
+CXX := g++
+# linker
+LD := g++
+# tar
+TAR := tar
+
+# C flags
+CFLAGS := -std=c11
+# C++ flags
+CXXFLAGS := -std=c++17
+# C/C++ flags
+CPPFLAGS := -g -Wall -Wextra -pedantic
+# linker flags
+LDFLAGS :=
+# flags required for dependency generation; passed to compilers
+DEPFLAGS = -MT $@ -MD -MP -MF $(DEPDIR)/$*.Td
+
+# compile C source files
+COMPILE.c = $(CC) $(DEPFLAGS) $(CFLAGS) $(CPPFLAGS) -c -o $@
+# compile C++ source files
+COMPILE.cc = $(CXX) $(DEPFLAGS) $(CXXFLAGS) $(CPPFLAGS) -c -o $@
+# link object files to binary
+LINK.o = $(LD) -o $@
+# precompile step
+PRECOMPILE = mkdir -p $(@D)
+# postcompile step
+POSTCOMPILE = mv -f $(DEPDIR)/$*.Td $(DEPDIR)/$*.d
+
+all: $(BIN)
+
+dist: $(DISTFILES)
+	$(TAR) -cvzf $(DISTOUTPUT) $^
+
 .PHONY: clean
-
-Serializable.o: Serializable.h
-
 clean:
-	rm -f $(OBJ_FILES) library
+	rm -f -r $(OBJDIR) $(DEPDIR)
+
+$(BIN): $(OBJS)
+	$(LINK.o) $^
+
+$(OBJDIR)/%.o: %.c
+$(OBJDIR)/%.o: %.c $(DEPDIR)/%.d
+	$(PRECOMPILE)
+	$(COMPILE.c) $<
+	$(POSTCOMPILE)
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(DEPDIR)/%.d
+	$(PRECOMPILE)
+	$(COMPILE.cc) $<
+	$(POSTCOMPILE)
+
+$(OBJDIR)/%.o: %.cc
+$(OBJDIR)/%.o: %.cc $(DEPDIR)/%.d
+	$(PRECOMPILE)
+	$(COMPILE.cc) $<
+	$(POSTCOMPILE)
+
+$(OBJDIR)/%.o: %.cxx
+$(OBJDIR)/%.o: %.cxx $(DEPDIR)/%.d
+	$(PRECOMPILE)
+	$(COMPILE.cc) $<
+	$(POSTCOMPILE)
 
 
-
-# SRC_FILES := $(wildcard $(SRC_DIR)/*/*.cpp) $(wildcard $(SRC_DIR)/*.cpp)
-
-# all : Library.out
-
-# Library.out : $(OBJ_FILES)
-# 	$(CXX) -o $@ $(OBJ_FILES) 
-
-# $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
-# 	mkdir -p $(@D)
-# 	$(CXX) $(CXXFLAGS) -c -o $@ $< 
-# # .cpp.o:
-# #    $(CC) $(CFLAGS) -c $<`
-
-
-
-# # Library: ./target/main.o
-# # 	g++ ./target/main.o -o Library
+$(DEPDIR)/%.d: ;

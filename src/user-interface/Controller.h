@@ -52,10 +52,10 @@ public:
     const std::unique_ptr<Result> runCommand(const std::vector<std::string> &);
 
 private:
-    static const size_t ONE_WORD = 1;
-    static const size_t TWO_WORDS = 2;
-    static const size_t THREE_WORDS = 3;
-    static const size_t FOUR_WORDS = 4;
+    static const size_t ONE_WORD;
+    static const size_t TWO_WORDS;
+    static const size_t THREE_WORDS;
+    static const size_t FOUR_WORDS;
 
     static const std::string INVALID_COMMAND;
 
@@ -92,6 +92,6 @@ private:
     using StringToBaseCommandMap = std::map<std::string, BaseCommand>;
     static const StringToBaseCommandMap COMMAND_MAP;
 
-    static const BaseCommand findCommand(const std::string &command);
+    static BaseCommand findCommand(const std::string &command);
 };
 #endif

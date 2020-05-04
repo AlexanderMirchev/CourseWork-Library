@@ -5,7 +5,7 @@
 */
 struct RepositoryException : public std::exception
 {
-    virtual ~RepositoryException();
+    virtual ~RepositoryException() = default;
 
     virtual const char *what() const throw() = 0;
 };

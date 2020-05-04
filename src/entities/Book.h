@@ -37,7 +37,7 @@ public:
     /*
         Returns the year the book was published
     */
-    const int getYear() const;
+    const int &getYear() const;
 
     /*
         Returns vector of tags
@@ -47,7 +47,7 @@ public:
     /*
         Returns the rating of the book
     */
-    const double getRating() const;
+    const double &getRating() const;
 
     /*
         Returns ISBN string
