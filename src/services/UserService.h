@@ -17,7 +17,7 @@ public:
         Returns logged in user.
         optional/throws?
     */
-    virtual const std::optional<User> &authenticateUser(
+    virtual const std::optional<User> authenticateUser(
         const std::string &username, const std::string &password) const = 0;
 
     /*

@@ -55,7 +55,7 @@ void Book::stringToObject(const std::string &string)
 {
     std::vector<std::string> values = separateCSVs(string);
 
-    int iterator = 0;
+    unsigned int iterator = 0;
 
     this->author = values[iterator++];
     this->title = values[iterator++];

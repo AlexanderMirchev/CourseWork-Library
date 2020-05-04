@@ -50,6 +50,6 @@ public:
         If no match is found nullopt is returned.
         Throws NoSourceException if no file is opened.
     */
-    virtual const std::optional<const Book &> &getBookByISBN(const std::string &ISBN) const = 0;
+    virtual const std::optional<Book> getBookByISBN(const std::string &ISBN) const = 0;
 };
 #endif

@@ -15,7 +15,7 @@ private:
 public:
     void saveChanges() const override;
 
-    const const std::optional<const User &> &getUserByUsername(
+    const std::optional<User> getUserByUsername(
         const std::string &username) const override;
 
     void addUser(const User &user) override;

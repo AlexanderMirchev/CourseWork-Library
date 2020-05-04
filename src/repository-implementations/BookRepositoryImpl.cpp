@@ -19,7 +19,7 @@ void BookRepositoryImpl::fetch()
         throw NoSourceException();
     }
     // try
-    this->books = this->serializer.value.readAllEntities();
+    this->books = this->serializer.value().readAllEntities();
 }
 void BookRepositoryImpl::removeSource()
 {
@@ -39,7 +39,7 @@ void BookRepositoryImpl::saveChanges() const
         throw NoSourceException();
     }
 
-    this->serializer.value.writeAllEntities(this->books);
+    this->serializer.value().writeAllEntities(this->books);
 }
 
 const std::vector<Book> &BookRepositoryImpl::getAllBooks() const
@@ -52,7 +52,7 @@ const std::vector<Book> &BookRepositoryImpl::getAllBooks() const
 
     return this->books;
 }
-const std::optional<const Book &> &BookRepositoryImpl::getBookByISBN(const std::string &ISBN) const
+const std::optional<Book> BookRepositoryImpl::getBookByISBN(const std::string &ISBN) const
 {
 
     if (!this->serializer.has_value())

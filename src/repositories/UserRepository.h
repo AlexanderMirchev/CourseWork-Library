@@ -22,7 +22,7 @@ public:
         Returns user with username.
         If no match is found nullopt is returned.
     */
-    virtual const std::optional<const User &> &getUserByUsername(
+    virtual const std::optional<User> getUserByUsername(
         const std::string &username) const = 0;
 
     /*

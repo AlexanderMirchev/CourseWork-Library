@@ -13,7 +13,7 @@ private:
     std::unique_ptr<UserRepository> userRepository;
 
 public:
-    const std::optional<User> &authenticateUser(
+    const std::optional<User> authenticateUser(
         const std::string &username, const std::string &password) const override;
 
     void addUser(const std::string &username, const std::string &password) override;

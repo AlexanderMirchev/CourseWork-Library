@@ -57,7 +57,7 @@ public:
 
         Throws NoOpenFileException if no file is open.
     */
-    virtual const std::optional<Book> &getBookInfo(const std::string &ISBN) const = 0;
+    virtual const std::optional<Book> getBookInfo(const std::string &ISBN) const = 0;
 
     /*
         Returns all books that have optionString as their option value for a certain option

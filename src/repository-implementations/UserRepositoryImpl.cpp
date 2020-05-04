@@ -2,8 +2,7 @@
 
 #include "../repositories/RepositoryExceptions.cpp"
 
-UserRepositoryImpl::UserRepositoryImpl(const std::string &sourceFile) : 
-    serializer{EntitySerializer<User>(sourceFile)}
+UserRepositoryImpl::UserRepositoryImpl(const std::string &sourceFile) : serializer{EntitySerializer<User>(sourceFile)}
 {
     this->users = this->serializer.readAllEntities();
 }
@@ -13,7 +12,7 @@ void UserRepositoryImpl::saveChanges() const
     this->serializer.writeAllEntities(this->users);
 }
 
-const const std::optional<const User &> &UserRepositoryImpl::getUserByUsername(
+const std::optional<User> UserRepositoryImpl::getUserByUsername(
     const std::string &username) const
 {
     for (const User &user : this->users)

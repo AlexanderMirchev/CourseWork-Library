@@ -12,7 +12,7 @@ class User : public Serializable
 private:
     std::string username;
     std::string password;
-    bool isAdmin;
+    bool admin;
 
 public:
     const std::string objToString() const override;

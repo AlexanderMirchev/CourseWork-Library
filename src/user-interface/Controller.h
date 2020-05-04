@@ -38,16 +38,14 @@ private:
     };
 
     std::optional<User> loggedUser;
-    UserRole userRole;
     std::optional<std::string> openedFile;
     std::unique_ptr<UserService> userService;
     std::unique_ptr<BookService> bookService;
+    UserRole userRole;
 
 public:
     Controller(std::unique_ptr<UserService> &&userService,
-               std::unique_ptr<BookService> &&bookService)
-        : userService{std::move(userService)},
-          bookService{std::move(bookService)}, userRole{GUEST} {}
+               std::unique_ptr<BookService> &&bookService);
 
     bool hasLoggedUser() const;
 

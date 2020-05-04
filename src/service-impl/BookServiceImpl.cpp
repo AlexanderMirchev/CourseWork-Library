@@ -1,6 +1,6 @@
 #include "BookServiceImpl.h"
 
-BookServiceImpl::BookServiceImpl(std::unique_ptr<BookRepository> &&bookRepository)
+BookServiceImpl::BookServiceImpl(std::unique_ptr<BookRepository> bookRepository)
     : bookRepository{std::move(bookRepository)} {}
 
 void BookServiceImpl::openFile(const std::string &fileName)
@@ -25,7 +25,7 @@ const std::vector<Book> &BookServiceImpl::getAllBooks() const
 {
     return this->bookRepository->getAllBooks();
 }
-const const std::optional<Book> &BookServiceImpl::getBookInfo(const std::string &ISBN) const
+const std::optional<Book> BookServiceImpl::getBookInfo(const std::string &ISBN) const
 {
     return this->bookRepository->getBookByISBN(ISBN);
 }
@@ -65,7 +65,7 @@ const std::vector<Book> BookServiceImpl::sortBooksBy(const std::string &option, 
 
 const std::vector<Book> BookServiceImpl::sortBooksBy(const std::string &option)
 {
-    sortBooksBy(option, "asc");
+    return sortBooksBy(option, "asc");
 }
 
 BookServiceImpl::Filter BookServiceImpl::getFilterFromOption(const std::string &option)

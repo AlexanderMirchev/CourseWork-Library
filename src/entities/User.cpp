@@ -1,11 +1,11 @@
 #include "User.h"
 
 User::User() : User(std::string(""), std::string(""), false) {}
-User::User(const std::string &username, const std::string &password, const bool isAdmin)
+User::User(const std::string &username, const std::string &password, const bool admin)
 {
     this->username = username;
     this->password = password;
-    this->isAdmin = isAdmin;
+    this->admin = admin;
 }
 User::User(User &&other)
 {
@@ -15,12 +15,12 @@ User &User::operator=(User &&other)
 {
     this->username = std::move(other.username);
     this->password = std::move(other.password);
-    this->isAdmin = other.isAdmin;
+    this->admin = other.admin;
     return *this;
 }
 bool User::isAdmin() const
 {
-    return this->isAdmin;
+    return this->admin;
 }
 
 const std::string &User::getUsername() const
@@ -37,7 +37,7 @@ const std::string User::objToString() const
 
     result.append(username + ',');
     result.append(password + ',');
-    result.append(isAdmin ? "T" : "F");
+    result.append(admin ? "T" : "F");
 
     return result;
 }
@@ -50,10 +50,10 @@ void User::stringToObject(const std::string &string)
     this->password = values[iterator++];
     if (values[iterator] == "T")
     {
-        this->isAdmin = true;
+        this->admin = true;
     }
     else if (values[iterator] == "F")
     {
-        this->isAdmin = false;
+        this->admin = false;
     }
 }

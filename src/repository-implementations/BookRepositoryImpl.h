@@ -23,7 +23,7 @@ public:
 
     const std::vector<Book> &getAllBooks() const override;
 
-    const std::optional<const Book&> &getBookByISBN(const std::string &ISBN) const override;
+    const std::optional<Book> getBookByISBN(const std::string &ISBN) const override;
 
     BookRepositoryImpl() {}
 };
