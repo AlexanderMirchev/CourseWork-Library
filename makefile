@@ -1,90 +1,73 @@
-# output binary
+# THIS MAKEFILE IS MADE WITH IDEAS FROM: 
+# https://gist.github.com/maxtruxa/4b3929e118914ccef057f8a05c614b0f
+
+################################################################################################
+
+# Files/directories used/created in compilation process
+
+# output binary file
 BIN := library.out
 
-# source files
+# source directory
 SRCDIR := src
-SRCS := $(wildcard $(SRCDIR)/*.cpp) $(wildcard $(SRCDIR)/*/*.cpp)
-
-# intermediate directory for generated object files
+# directory for object and dependency files
 OBJDIR := obj
-# intermediate directory for generated dependency files
-DEPDIR := obj
 
+# source files
+SRCS := $(wildcard $(SRCDIR)/*.cpp) $(wildcard $(SRCDIR)/*/*.cpp)
 # object files, auto generated from source files
 OBJS := $(patsubst $(SRCDIR)/%.cpp,$(OBJDIR)/%.o,$(SRCS))
 # dependency files, auto generated from source files
-DEPS := $(patsubst $(SRCDIR)/%.cpp,$(DEPDIR)/%.o,$(SRCS))
+DEPS := $(patsubst $(SRCDIR)/%.cpp,$(OBJDIR)/%.d,$(SRCS))
 
-# compilers (at least gcc and clang) don't create the subdirectories automatically
+# creates directory for objects and dependency if it does not exist
 $(shell mkdir -p $(OBJDIR))
-$(shell mkdir -p $(DEPDIR))
 
-# C compiler
-CC := clang
+################################################################################################
+
+# Compiler variables and predefined actions
+
 # C++ compiler
 CXX := g++
-# linker
-LD := g++
-# tar
-TAR := tar
 
-# C flags
-CFLAGS := -std=c11
 # C++ flags
+# -std=c++17 - standard level
 CXXFLAGS := -std=c++17
 # C/C++ flags
 CPPFLAGS := -g -Wall -Wextra -pedantic
-# linker flags
-LDFLAGS :=
 # flags required for dependency generation; passed to compilers
-DEPFLAGS = -MT $@ -MD -MP -MF $(DEPDIR)/$*.Td
+DEPFLAGS = -MT $@ -MD -MP -MF $(OBJDIR)/$*.d
 
-# compile C source files
-COMPILE.c = $(CC) $(DEPFLAGS) $(CFLAGS) $(CPPFLAGS) -c -o $@
 # compile C++ source files
-COMPILE.cc = $(CXX) $(DEPFLAGS) $(CXXFLAGS) $(CPPFLAGS) -c -o $@
+COMPILE = $(CXX) $(DEPFLAGS) $(CXXFLAGS) $(CPPFLAGS) -c -o $@
 # link object files to binary
-LINK.o = $(LD) -o $@
-# precompile step
+LINK = $(CXX) -o $@
+# precompile step to ensure there is a 
+# folder ready for newly compiled files
 PRECOMPILE = mkdir -p $(@D)
-# postcompile step
-POSTCOMPILE = mv -f $(DEPDIR)/$*.Td $(DEPDIR)/$*.d
 
+################################################################################################
+
+# Compilation and linking 
 all: $(BIN)
 
-dist: $(DISTFILES)
-	$(TAR) -cvzf $(DISTOUTPUT) $^
-
+# Removes directory for object and dependency files
 .PHONY: clean
 clean:
-	rm -f -r $(OBJDIR) $(DEPDIR)
+	rm -f -r $(OBJDIR)
 
+# Links all object files into the binary
 $(BIN): $(OBJS)
-	$(LINK.o) $^
+	$(LINK) $^
 
-$(OBJDIR)/%.o: %.c
-$(OBJDIR)/%.o: %.c $(DEPDIR)/%.d
-	$(PRECOMPILE)
-	$(COMPILE.c) $<
-	$(POSTCOMPILE)
-
+# Compiles source file into obj file while 
+# including all dependencies.
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
-$(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(DEPDIR)/%.d
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(OBJDIR)/%.d
 	$(PRECOMPILE)
-	$(COMPILE.cc) $<
-	$(POSTCOMPILE)
+	$(COMPILE) $<
 
-$(OBJDIR)/%.o: %.cc
-$(OBJDIR)/%.o: %.cc $(DEPDIR)/%.d
-	$(PRECOMPILE)
-	$(COMPILE.cc) $<
-	$(POSTCOMPILE)
+# Allows creation of dependencies
+$(OBJDIR)/%.d: ;
 
-$(OBJDIR)/%.o: %.cxx
-$(OBJDIR)/%.o: %.cxx $(DEPDIR)/%.d
-	$(PRECOMPILE)
-	$(COMPILE.cc) $<
-	$(POSTCOMPILE)
-
-
-$(DEPDIR)/%.d: ;
+################################################################################################
