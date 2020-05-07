@@ -17,11 +17,11 @@ public:
     /*
         Separates a string into words and ignores trailing spaces
     */
-    const std::vector<std::string> readInput(const std::string &line);
+    static const std::vector<std::string> readInput(const std::string &line);
 
     /*
         Overloaded function to display message onto console
     */
-    void display(const std::unique_ptr<Result>& result);
+    static void display(const std::unique_ptr<Result>& result);
 };
 #endif

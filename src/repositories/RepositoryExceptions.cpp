@@ -1,4 +1,11 @@
+#ifndef REPOSITORYEXCEPTIONS_H
+#define REPOSITORYEXCEPTIONS_H
+
 #include <exception>
+
+/*
+
+*/
 
 /*
     Base repository exception
@@ -35,6 +42,17 @@ struct NoSourceException : public RepositoryException
 };
 
 /*
+    Exception for when an error occurs while reading file.
+*/
+struct BadFileException : public RepositoryException
+{
+    const char *what() const throw() override
+    {
+        return "Error occured while reading the file . \n";
+    }
+};
+
+/*
     Exception for when an entity is to be added to current 
     list of entities, but does not satisfy an unique constraint.
     (one of the fields should be unique)
@@ -58,3 +76,4 @@ struct EntityNotFoundException : public RepositoryException
         return "No such entity found. \n";
     }
 };
+#endif

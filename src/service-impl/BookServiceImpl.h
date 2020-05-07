@@ -29,7 +29,7 @@ public:
     const std::vector<Book> findBooksBy(
         const std::string &option, const std::string &optionString) const override;
 
-    const std::vector<Book> sortBooksBy(const std::string &option, const std::string &ascdesc) override;
+    const std::vector<Book> sortBooksBy(const std::string &option, const std::string &order) override;
 
     const std::vector<Book> sortBooksBy(const std::string &option) override;
 

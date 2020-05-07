@@ -1,9 +1,9 @@
 #include "Console.h"
 
-const std::vector<std::string> readInput(const std::string &line)
+const std::vector<std::string> Console::readInput(const std::string &line)
 {
     std::vector<std::string> resCommandList;
-    
+
     std::string tempString;
     for (size_t i = 0; i < line.size(); i++)
     {
@@ -20,9 +20,14 @@ const std::vector<std::string> readInput(const std::string &line)
             }
         }
     }
+    if (!tempString.empty())
+    {
+        resCommandList.push_back(tempString);
+    }
     return resCommandList;
 }
 
-void Console::display(const std::unique_ptr<Result>& result) {
+void Console::display(const std::unique_ptr<Result> &result)
+{
     result->display();
 }

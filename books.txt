@@ -1,0 +1,2 @@
+Pod Igoto,Ivan Vazov,Novel,A book about the bulgarian fight for freedom,1880,novel,bulgarian,classic,10,2223
+Jelezniq Svetilnik,Dimitar Talev,Novel,A book about the bulgarian fight for freedom,1880,novel,bulgarian,classic,10,2224

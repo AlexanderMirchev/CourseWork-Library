@@ -70,6 +70,14 @@ const std::unique_ptr<Result> Controller::runCommand(
                     },
                     USER, Controller::TWO_WORDS, numberOfWords);
             }
+            if (extractedCommandIntoWords[1] == "info")
+            {
+                return validateAndExecute(
+                    [this, extractedCommandIntoWords] {
+                        return booksInfo(extractedCommandIntoWords[2]);
+                    },
+                    USER, Controller::THREE_WORDS, numberOfWords);
+            }
             if (extractedCommandIntoWords[1] == "find")
             {
                 return validateAndExecute(
@@ -121,8 +129,13 @@ const std::unique_ptr<Result> Controller::runCommand(
         }
         return std::unique_ptr<Result>(new StringResult(INVALID_COMMAND));
     default:
+        std::cout << "kur\n";
         return std::unique_ptr<Result>(new StringResult(INVALID_COMMAND));
     };
+}
+
+bool Controller::hasLoggedUser() const {
+    return loggedUser.has_value();
 }
 
 const Controller::StringToBaseCommandMap Controller::COMMAND_MAP = {
@@ -191,12 +204,12 @@ const std::string Controller::HELP_MESSAGE_GUEST =
     std::string("exit - exits the program\n login - login for user with username and password\n ");
 const std::string Controller::HELP_MESSAGE_USER =
     HELP_MESSAGE_GUEST + std::string("logout - logouts the current user\n ") +
-    std::string("books all - displays all books form file\n") +
+    std::string("books all - displays all books form file\n ") +
     std::string("books info <ISBN> - displays the book with the given isbn\n ") +
     std::string("books find <option> <option string>") +
     std::string(" - finds all books by option(title, author, tag)\n ") +
     std::string("books sort <option> [asc/desc] + - sorts all books by ") +
-    std::string("option(title,author, year, rating) in ascending descending order(optional)\n ");
+    std::string("option(title,author, year, rating) in ascending or descending order(optional)\n ");
 const std::string Controller::HELP_MESSAGE_ADMIN =
     HELP_MESSAGE_USER +
     std::string("users add <username> <password> - creates new user with username and password\n ") +

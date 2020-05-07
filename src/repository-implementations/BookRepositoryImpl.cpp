@@ -18,8 +18,15 @@ void BookRepositoryImpl::fetch()
     {
         throw NoSourceException();
     }
-    // try
-    this->books = this->serializer.value().readAllEntities();
+    try
+    {
+        this->books = this->serializer.value().readAllEntities();
+    }
+    catch(const std::exception& e)
+    {
+        throw BadFileException();
+        this->serializer = std::nullopt;
+    }
 }
 void BookRepositoryImpl::removeSource()
 {
@@ -69,22 +76,3 @@ const std::optional<Book> BookRepositoryImpl::getBookByISBN(const std::string &I
     }
     return std::nullopt;
 }
-
-// const std::vector<Book> &BookRepositoryImpl::getAllBooksSortedBy(
-//     const std::function<bool(const Book &, const Book &)> &fieldComparator, bool asc)
-// {
-//     std::vector<Book> booksNewOrder(this->books);
-//     for (size_t i = 0; i < booksNewOrder.size(); i++)
-//     {
-//         for (size_t j = 0; j < booksNewOrder.size() - i - 1; j++)
-//         {
-//             if (fieldComparator(booksNewOrder[j], booksNewOrder[j - 1]) == asc)
-//             {
-//                 std::swap(booksNewOrder[j], booksNewOrder[j + 1]);
-//             }
-//         }
-//     }
-//     this->books = booksNewOrder;
-//     return this->books;
-// }
-

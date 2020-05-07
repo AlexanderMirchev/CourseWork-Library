@@ -1,3 +1,6 @@
+#ifndef RESULTWRAPPERS_H
+#define RESULTWRAPPERS_H
+
 #include <iostream>
 #include <memory>
 #include "../entities/Book.h"
@@ -55,3 +58,4 @@ public:
         std::cout << this->string << std::endl;
     }
 };
+#endif

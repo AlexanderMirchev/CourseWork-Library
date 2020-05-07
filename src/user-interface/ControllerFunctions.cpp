@@ -32,7 +32,7 @@ const std::unique_ptr<Result> Controller::help() const
         message = HELP_MESSAGE_GUEST;
         break;
     case USER:
-        message = HELP_MESSAGE_GUEST;
+        message = HELP_MESSAGE_USER;
         break;
     case ADMIN:
         message = HELP_MESSAGE_ADMIN;
@@ -45,16 +45,26 @@ const std::unique_ptr<Result> Controller::help() const
 const std::unique_ptr<Result> Controller::login(
     const std::string &username, const std::string &password)
 {
-    this->loggedUser = this->userService->authenticateUser(username, password);
-    this->userRole = this->loggedUser->isAdmin() ? ADMIN : USER;
+    const std::optional<User> user = this->userService->authenticateUser(username, password);
+    if (user.has_value())
+    {
+        this->loggedUser = user;
+        this->userRole = this->loggedUser.value().isAdmin() ? ADMIN : USER;
 
-    return std::unique_ptr<Result>(new StringResult("Successfully logged in."));
+        return std::unique_ptr<Result>(new StringResult("Successfully logged in."));
+    }
+    return std::unique_ptr<Result>(new StringResult("No such user found."));
 }
 const std::unique_ptr<Result> Controller::logout()
 {
-    this->loggedUser = std::nullopt;
-    this->userRole = GUEST;
-    return std::unique_ptr<Result>(new StringResult("Successfully logged out."));
+    if (loggedUser.has_value())
+    {
+        this->loggedUser = std::nullopt;
+        this->userRole = GUEST;
+        return std::unique_ptr<Result>(new StringResult("Successfully logged out."));
+    }
+    return std::unique_ptr<Result>(
+        new StringResult("You can't log out if you are not logged in."));
 }
 const std::unique_ptr<Result> Controller::booksAll() const
 {

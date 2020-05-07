@@ -37,8 +37,8 @@ const std::string Book::objToString() const
 
     std::string result;
 
-    result.append(author + ',');
     result.append(title + ',');
+    result.append(author + ',');
     result.append(genre + ',');
     result.append(description + ',');
     result.append(std::to_string(year) + ',');
@@ -57,8 +57,8 @@ void Book::stringToObject(const std::string &string)
 
     unsigned int iterator = 0;
 
-    this->author = values[iterator++];
     this->title = values[iterator++];
+    this->author = values[iterator++];
     this->genre = values[iterator++];
     this->description = values[iterator++];
     this->year = std::stoi(values[iterator++]);
@@ -116,6 +116,7 @@ void Book::print(bool detailed) const
     }
     else
     {
-        std::cout << this->title <<  " by " << this->author << std::endl;
+        std::cout << this->title << " by "
+                  << this->author << " " << this->ISBN << std::endl;
     }
 }

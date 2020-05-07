@@ -1,33 +1,47 @@
 #include "BookServiceImpl.h"
+#include "Execute.cpp"
 
 BookServiceImpl::BookServiceImpl(std::unique_ptr<BookRepository> bookRepository)
     : bookRepository{std::move(bookRepository)} {}
 
 void BookServiceImpl::openFile(const std::string &fileName)
 {
-    this->bookRepository->setSource(fileName);
-    this->bookRepository->fetch();
+    execute<void>([this, fileName]() {
+        this->bookRepository->setSource(fileName);
+        this->bookRepository->fetch();
+        return;
+    });
 }
 void BookServiceImpl::closeFile()
 {
-    this->bookRepository->removeSource();
+    execute<void>([this]() {
+        this->bookRepository->removeSource();
+    });
 }
 void BookServiceImpl::saveFile() const
 {
-    this->bookRepository->saveChanges();
+    execute<void>([this]() {
+        this->bookRepository->saveChanges();
+    });
 }
 void BookServiceImpl::saveFileAs(const std::string &newFileName)
 {
-    this->bookRepository->setSource(newFileName);
-    this->bookRepository->saveChanges();
+    execute<void>([this, newFileName]() {
+        this->bookRepository->setSource(newFileName);
+        this->bookRepository->saveChanges();
+    });
 }
 const std::vector<Book> &BookServiceImpl::getAllBooks() const
 {
-    return this->bookRepository->getAllBooks();
+    return execute<const std::vector<Book> &>([this]() {
+        return this->bookRepository->getAllBooks();
+    });
 }
 const std::optional<Book> BookServiceImpl::getBookInfo(const std::string &ISBN) const
 {
-    return this->bookRepository->getBookByISBN(ISBN);
+    return execute<const std::optional<Book>>([this, ISBN]() {
+        return this->bookRepository->getBookByISBN(ISBN);
+    });
 }
 const std::vector<Book> BookServiceImpl::findBooksBy(
     const std::string &option, const std::string &optionString) const
@@ -44,23 +58,26 @@ const std::vector<Book> BookServiceImpl::findBooksBy(
     }
     return resList;
 }
-const std::vector<Book> BookServiceImpl::sortBooksBy(const std::string &option, const std::string &ascdesc)
+const std::vector<Book> BookServiceImpl::sortBooksBy(
+    const std::string &option, const std::string &order)
 {
-    Comparator comparator = getComparatorFromOption(option);
-    bool asc = getOrderFromString(ascdesc);
+    return execute<std::vector<Book>>([this, option, order]() {
+        Comparator comparator = getComparatorFromOption(option);
+        bool asc = getOrderFromString(order);
 
-    std::vector<Book> booksNewOrder(this->bookRepository->getAllBooks());
-    for (size_t i = 0; i < booksNewOrder.size(); i++)
-    {
-        for (size_t j = 0; j < booksNewOrder.size() - i - 1; j++)
+        std::vector<Book> booksNewOrder(this->bookRepository->getAllBooks());
+        for (size_t i = 0; i < booksNewOrder.size(); i++)
         {
-            if (comparator(booksNewOrder[j], booksNewOrder[j - 1]) == asc)
+            for (size_t j = 0; j < booksNewOrder.size() - i - 1; j++)
             {
-                std::swap(booksNewOrder[j], booksNewOrder[j + 1]);
+                if (comparator(booksNewOrder[j], booksNewOrder[j - 1]) == asc)
+                {
+                    std::swap(booksNewOrder[j], booksNewOrder[j + 1]);
+                }
             }
         }
-    }
-    return booksNewOrder;
+        return booksNewOrder;
+    });
 }
 
 const std::vector<Book> BookServiceImpl::sortBooksBy(const std::string &option)
@@ -73,7 +90,7 @@ BookServiceImpl::Filter BookServiceImpl::getFilterFromOption(const std::string &
     OptionToFilterMap::const_iterator mapEntry = optionToFilterMap.find(option);
     if (mapEntry == optionToFilterMap.end())
     {
-        throw;
+        throw InvalidParamException(std::string("Option"));
     }
     return mapEntry->second;
 }
@@ -84,24 +101,24 @@ BookServiceImpl::Comparator BookServiceImpl::getComparatorFromOption(
     OptionToComparatorMap::const_iterator mapEntry = optionToComparatorMap.find(option);
     if (mapEntry == optionToComparatorMap.end())
     {
-        throw;
+        throw InvalidParamException(std::string("Option"));
     }
     return mapEntry->second;
 }
 
-bool BookServiceImpl::getOrderFromString(const std::string &ascdesc)
+bool BookServiceImpl::getOrderFromString(const std::string &order)
 {
-    if (ascdesc == "asc")
+    if (order == "asc")
     {
         return true;
     }
-    else if (ascdesc == "desc")
+    else if (order == "desc")
     {
         return false;
     }
     else
     {
-        throw;
+        throw InvalidParamException(std::string("Order"));
     }
 }
 
