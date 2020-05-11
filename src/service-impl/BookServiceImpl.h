@@ -22,7 +22,7 @@ public:
 
     void saveFileAs(const std::string &newFileName) override;
 
-    const std::vector<Book> &getAllBooks() const override;
+    const std::vector<Book> getAllBooks() const override;
 
     const std::optional<Book> getBookInfo(const std::string &ISBN) const override;
 

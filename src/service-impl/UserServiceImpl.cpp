@@ -1,4 +1,5 @@
 #include "UserServiceImpl.h"
+#include "../service-impl/Execute.cpp"
 
 UserServiceImpl::UserServiceImpl(std::unique_ptr<UserRepository> &&userRepository)
     : userRepository{std::move(userRepository)} {}
@@ -19,9 +20,13 @@ const std::optional<User> UserServiceImpl::authenticateUser(
 }
 void UserServiceImpl::addUser(const std::string &username, const std::string &password)
 {
-    this->userRepository->addUser(User(username, password, false));
+    execute<void>([this, username, password]() {
+        this->userRepository->addUser(User(username, password, false));
+    }, "User");
 }
 void UserServiceImpl::removeUser(const std::string &username)
 {
-    this->userRepository->removeUserByUsername(username);
+    execute<void>([this, username]() {
+        this->userRepository->removeUserByUsername(username);
+    }, "User");
 }

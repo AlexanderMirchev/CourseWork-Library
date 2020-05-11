@@ -1,2 +1,3 @@
-Pod Igoto,Ivan Vazov,Novel,A book about the bulgarian fight for freedom,1880,novel,bulgarian,classic,10,2223
-Jelezniq Svetilnik,Dimitar Talev,Novel,A book about the bulgarian fight for freedom,1880,novel,bulgarian,classic,10,2224
+Pod Igoto,Ivan Vazov,Novel,A book about the bulgarian fight for freedom,1880,novel,bulgarian,classic,10.000000,2223
+Jelezniq Svetilnik,Dimitar Talev,Novel,A book about the bulgarian fight for freedom,1880,novel,bulgarian,classic,10.000000,2224
+Razkazi,Elin Pelin,Short stories,Razkazi na Elin Pelin,1910,short stories,bulgarian,classic,village,10.000000,1025

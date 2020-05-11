@@ -15,8 +15,10 @@ private:
     bool admin;
 
 public:
+    /*
+        See Serializable
+    */
     const std::string objToString() const override;
-
     void stringToObject(const std::string &) override;
 
     /*

@@ -20,15 +20,16 @@ int main()
     while (true)
     {
         std::string line;
+        std::cout << "~ ";
         std::getline(std::cin, line);
 
         std::vector<std::string> command = Console::readInput(line);
         if(command.size() == 1 && command[0] == "login" && !controller.hasLoggedUser()) {
             std::string username, password;
             std::cout << "Username: ";
-            std::cin >> username;
+            std::getline(std::cin, username);
             std::cout << "Password: ";
-            std::cin >> password;
+            std::getline(std::cin, password);
 
             command.push_back(username);
             command.push_back(password);

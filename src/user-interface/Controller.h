@@ -80,12 +80,14 @@ private:
     const std::unique_ptr<Result> help() const;
     const std::unique_ptr<Result> login(const std::string &username, const std::string &password);
     const std::unique_ptr<Result> logout();
+    const std::unique_ptr<Result> books(const std::vector<std::string> &commands);
     const std::unique_ptr<Result> booksAll() const;
     const std::unique_ptr<Result> booksInfo(const std::string &ISBN) const;
     const std::unique_ptr<Result> booksFind(const std::string &option,
                                             const std::string &optionString);
     const std::unique_ptr<Result> booksSort(const std::string &option, const std::string &order);
     const std::unique_ptr<Result> booksSort(const std::string &option);
+    const std::unique_ptr<Result> users(const std::vector<std::string> &commands);
     const std::unique_ptr<Result> usersAdd(const std::string &username, const std::string &password);
     const std::unique_ptr<Result> usersRemove(const std::string &username);
 

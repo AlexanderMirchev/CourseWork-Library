@@ -34,6 +34,7 @@ void UserRepositoryImpl::addUser(const User &user)
     {
         this->users.push_back(user);
     }
+    saveChanges();
 }
 void UserRepositoryImpl::removeUserByUsername(const std::string &username)
 {
@@ -59,4 +60,5 @@ void UserRepositoryImpl::removeUserByUsername(const std::string &username)
     {
         this->users = newUsers;
     }
+    saveChanges();
 }

@@ -22,6 +22,10 @@ public:
     /*
         Overloaded function to display message onto console
     */
-    static void display(const std::unique_ptr<Result>& result);
+    static void display(const std::unique_ptr<Result> &result);
+
+private:
+    static const std::string extractWord(
+        const std::string &line, unsigned int &posInLine, const char &delimeter);
 };
 #endif

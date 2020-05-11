@@ -4,140 +4,79 @@ Controller::Controller(std::unique_ptr<UserService> &&userService,
     : userService{std::move(userService)},
       bookService{std::move(bookService)}, userRole(GUEST) {}
 const std::unique_ptr<Result> Controller::runCommand(
-    const std::vector<std::string> &extractedCommandIntoWords)
+    const std::vector<std::string> &commands)
 {
-    if (extractedCommandIntoWords.empty())
+    if (commands.empty())
     {
         return std::unique_ptr<Result>(new StringResult(INVALID_COMMAND));
     }
 
-    const BaseCommand command = findCommand(extractedCommandIntoWords[0]);
-    const size_t numberOfWords = extractedCommandIntoWords.size();
+    const BaseCommand command = findCommand(commands[0]);
 
     switch (command)
     {
     case OPEN:
         return validateAndExecute(
-            [this, extractedCommandIntoWords] {
-                return open(extractedCommandIntoWords[1]);
+            [this, commands] {
+                return open(commands[1]);
             },
-            GUEST, Controller::TWO_WORDS, numberOfWords);
+            GUEST, Controller::TWO_WORDS, commands.size());
 
     case CLOSE:
         return validateAndExecute(
             [this] {
                 return close();
             },
-            GUEST, Controller::ONE_WORD, numberOfWords);
+            GUEST, Controller::ONE_WORD, commands.size());
     case SAVE:
         return validateAndExecute(
             [this] {
                 return save();
             },
-            GUEST, Controller::ONE_WORD, numberOfWords);
+            GUEST, Controller::ONE_WORD, commands.size());
     case SAVEAS:
         return validateAndExecute(
-            [this, extractedCommandIntoWords] {
-                return saveas(extractedCommandIntoWords[1]);
+            [this, commands] {
+                return saveas(commands[1]);
             },
-            GUEST, Controller::TWO_WORDS, numberOfWords);
+            GUEST, Controller::TWO_WORDS, commands.size());
     case HELP:
         return validateAndExecute(
-            [this, extractedCommandIntoWords] {
+            [this, commands] {
                 return help();
             },
-            GUEST, Controller::ONE_WORD, numberOfWords);
+            GUEST, Controller::ONE_WORD, commands.size());
     case LOGIN:
         return validateAndExecute(
-            [this, extractedCommandIntoWords] {
-                return login(extractedCommandIntoWords[1], extractedCommandIntoWords[2]);
+            [this, commands] {
+                return login(commands[1], commands[2]);
             },
-            GUEST, Controller::THREE_WORDS, numberOfWords);
+            GUEST, Controller::THREE_WORDS, commands.size());
     case LOGOUT:
         return validateAndExecute(
             [this] {
                 return logout();
             },
-            USER, Controller::ONE_WORD, numberOfWords);
+            USER, Controller::ONE_WORD, commands.size());
     case BOOKS:
-        if (numberOfWords > 1)
+        if (commands.size() > 1)
         {
-            if (extractedCommandIntoWords[1] == "all")
-            {
-                return validateAndExecute(
-                    [this] {
-                        return booksAll();
-                    },
-                    USER, Controller::TWO_WORDS, numberOfWords);
-            }
-            if (extractedCommandIntoWords[1] == "info")
-            {
-                return validateAndExecute(
-                    [this, extractedCommandIntoWords] {
-                        return booksInfo(extractedCommandIntoWords[2]);
-                    },
-                    USER, Controller::THREE_WORDS, numberOfWords);
-            }
-            if (extractedCommandIntoWords[1] == "find")
-            {
-                return validateAndExecute(
-                    [this, extractedCommandIntoWords] {
-                        return booksFind(extractedCommandIntoWords[2],
-                                         extractedCommandIntoWords[3]);
-                    },
-                    USER, Controller::FOUR_WORDS, numberOfWords);
-            }
-            if (extractedCommandIntoWords[1] == "sort")
-            {
-                if (numberOfWords == 3)
-                {
-                    return validateAndExecute(
-                        [this, extractedCommandIntoWords] {
-                            return booksSort(extractedCommandIntoWords[2]);
-                        },
-                        USER, THREE_WORDS, numberOfWords);
-                }
-                return validateAndExecute(
-                    [this, extractedCommandIntoWords] {
-                        return booksSort(extractedCommandIntoWords[2],
-                                         extractedCommandIntoWords[3]);
-                    },
-                    USER, FOUR_WORDS, numberOfWords);
-            }
+            return books(commands);
         }
         return std::unique_ptr<Result>(new StringResult(INVALID_COMMAND));
     case USERS:
-        if (numberOfWords > 1)
+        if (commands.size() > 1)
         {
-            if (extractedCommandIntoWords[1] == "add")
-            {
-                return validateAndExecute(
-                    [this, extractedCommandIntoWords] {
-                        return usersAdd(extractedCommandIntoWords[2],
-                                        extractedCommandIntoWords[3]);
-                    },
-                    ADMIN, FOUR_WORDS, numberOfWords);
-            }
-            if (extractedCommandIntoWords[1] == "remove")
-            {
-                return validateAndExecute(
-                    [this, extractedCommandIntoWords] {
-                        return usersRemove(extractedCommandIntoWords[2]);
-                    },
-                    ADMIN, THREE_WORDS, numberOfWords);
-            }
+            return users(commands);
         }
         return std::unique_ptr<Result>(new StringResult(INVALID_COMMAND));
     default:
-        std::cout << "kur\n";
         return std::unique_ptr<Result>(new StringResult(INVALID_COMMAND));
     };
 }
-
 bool Controller::hasLoggedUser() const {
     return loggedUser.has_value();
 }
-
 const Controller::StringToBaseCommandMap Controller::COMMAND_MAP = {
     {"open", OPEN},
     {"close", CLOSE},
@@ -157,7 +96,6 @@ Controller::BaseCommand Controller::findCommand(const std::string &command)
     }
     return mapEntry->second;
 }
-
 const std::unique_ptr<Result> Controller::validateAndExecute(
     const std::function<const std::unique_ptr<Result>()> &command,
     UserRole requiredRole, const size_t &requiredSize, const size_t &actualSize)
@@ -166,7 +104,6 @@ const std::unique_ptr<Result> Controller::validateAndExecute(
     return std::as_const(*this)
         .validateAndExecute(command, requiredRole, requiredSize, actualSize);
 }
-
 const std::unique_ptr<Result> Controller::validateAndExecute(
     const std::function<const std::unique_ptr<Result>()> &command,
     UserRole requiredRole, const size_t &requiredSize, const size_t &actualSize) const
@@ -194,7 +131,6 @@ const std::unique_ptr<Result> Controller::validateAndExecute(
         return std::unique_ptr<Result>(new StringResult("Unknown error."));
     }
 }
-
 const std::string Controller::INVALID_COMMAND = "No recognized command";
 
 const std::string Controller::HELP_MESSAGE_GUEST =

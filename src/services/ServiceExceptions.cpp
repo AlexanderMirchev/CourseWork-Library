@@ -42,41 +42,53 @@ struct UnreadableFileException : public ServiceException
 class AlreadyExistsException : public ServiceException
 {
 private:
-    std::string type;
+    std::string message;
 
 public:
     AlreadyExistsException() = delete;
-    AlreadyExistsException(const std::string &type) : type{type} {}
+    AlreadyExistsException(const std::string &type)
+    {
+        message = type;
+        message += " already exists.";
+    }
     const char *what() const throw() override
     {
-        return (std::string(type) + " already exists.").c_str();
+        return message.c_str();
     }
 };
 
 class NotFoundException : public ServiceException
 {
 private:
-    std::string type;
+    std::string message;
 
 public:
     NotFoundException() = delete;
-    NotFoundException(const std::string &type) : type{type} {}
+    NotFoundException(const std::string &type)
+    {
+        message = type;
+        message += " not found.";
+    }
     const char *what() const throw() override
     {
-        return (std::string(type) + " not found.").c_str();
+        return message.c_str();
     }
 };
 
 class InvalidParamException : public ServiceException
 {
 private:
-    std::string type;
+    std::string message;
 
 public:
     InvalidParamException() = delete;
-    InvalidParamException(const std::string &type) : type{type} {}
+    InvalidParamException(const std::string &type)
+    {
+        message = type;
+        message += " is invalid.";
+    }
     const char *what() const throw() override
     {
-        return (std::string(type) + " is invalid.").c_str();
+        return message.c_str();
     }
 };

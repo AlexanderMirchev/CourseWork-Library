@@ -9,7 +9,6 @@ void BookServiceImpl::openFile(const std::string &fileName)
     execute<void>([this, fileName]() {
         this->bookRepository->setSource(fileName);
         this->bookRepository->fetch();
-        return;
     });
 }
 void BookServiceImpl::closeFile()
@@ -27,13 +26,14 @@ void BookServiceImpl::saveFile() const
 void BookServiceImpl::saveFileAs(const std::string &newFileName)
 {
     execute<void>([this, newFileName]() {
+        this->bookRepository->removeSource();
         this->bookRepository->setSource(newFileName);
         this->bookRepository->saveChanges();
     });
 }
-const std::vector<Book> &BookServiceImpl::getAllBooks() const
+const std::vector<Book> BookServiceImpl::getAllBooks() const
 {
-    return execute<const std::vector<Book> &>([this]() {
+    return execute<const std::vector<Book>>([this]() {
         return this->bookRepository->getAllBooks();
     });
 }
@@ -46,17 +46,19 @@ const std::optional<Book> BookServiceImpl::getBookInfo(const std::string &ISBN) 
 const std::vector<Book> BookServiceImpl::findBooksBy(
     const std::string &option, const std::string &optionString) const
 {
-    Filter filter = getFilterFromOption(option);
-    std::vector<Book> books = this->bookRepository->getAllBooks();
-    std::vector<Book> resList;
-    for (const Book &book : books)
-    {
-        if (filter(book, optionString))
+    return execute<std::vector<Book>>([this, option, optionString]() {
+        Filter filter = getFilterFromOption(option);
+        std::vector<Book> books = this->bookRepository->getAllBooks();
+        std::vector<Book> resList;
+        for (const Book &book : books)
         {
-            resList.push_back(book);
+            if (filter(book, optionString))
+            {
+                resList.push_back(book);
+            }
         }
-    }
-    return resList;
+        return resList;
+    });
 }
 const std::vector<Book> BookServiceImpl::sortBooksBy(
     const std::string &option, const std::string &order)
@@ -70,7 +72,7 @@ const std::vector<Book> BookServiceImpl::sortBooksBy(
         {
             for (size_t j = 0; j < booksNewOrder.size() - i - 1; j++)
             {
-                if (comparator(booksNewOrder[j], booksNewOrder[j - 1]) == asc)
+                if (comparator(booksNewOrder[j], booksNewOrder[j + 1]) == asc)
                 {
                     std::swap(booksNewOrder[j], booksNewOrder[j + 1]);
                 }
@@ -142,11 +144,11 @@ const BookServiceImpl::OptionToFilterMap BookServiceImpl::optionToFilterMap = {
 
 const BookServiceImpl::OptionToComparatorMap BookServiceImpl::optionToComparatorMap = {
     {"title", [](const Book &book1,
-                 const Book &book2) { return book1.getTitle().compare(book2.getTitle()) < 0; }},
+                 const Book &book2) { return book1.getTitle().compare(book2.getTitle()) > 0; }},
     {"author", [](const Book &book1,
-                  const Book &book2) { return book1.getAuthor().compare(book2.getAuthor()) < 0; }},
+                  const Book &book2) { return book1.getAuthor().compare(book2.getAuthor()) > 0; }},
     {"year", [](const Book &book1,
-                const Book &book2) { return book1.getYear() < book2.getYear(); }},
+                const Book &book2) { return book1.getYear() > book2.getYear(); }},
     {"rating", [](const Book &book1,
-                  const Book &book2) { return book1.getRating() < book2.getRating(); }},
+                  const Book &book2) { return book1.getRating() > book2.getRating(); }},
 };

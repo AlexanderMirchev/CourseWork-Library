@@ -23,7 +23,7 @@ public:
     /*
         Gets all entities from source file.
         Throws NoSourceException if no file is opened.
-        Throws ??
+        Throws BadFormatException if the file does not meet the book requirements
     */
     virtual void fetch() = 0;
 

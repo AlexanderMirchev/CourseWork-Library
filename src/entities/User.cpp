@@ -1,4 +1,5 @@
 #include "User.h"
+#include "../repositories/RepositoryExceptions.cpp"
 
 User::User() : User(std::string(""), std::string(""), false) {}
 User::User(const std::string &username, const std::string &password, const bool admin)
@@ -44,6 +45,12 @@ const std::string User::objToString() const
 void User::stringToObject(const std::string &string)
 {
     std::vector<std::string> values = separateCSVs(string);
+    const size_t exactRequestedSize = 3;
+    if (values.size() != exactRequestedSize)
+    {
+        throw BadFormatException();
+    }
+    
 
     int iterator = 0;
     this->username = values[iterator++];

@@ -20,7 +20,6 @@ const std::vector<std::string> Serializable::separateCSVs(const std::string &str
 
     return resList;
 }
-
 void Serializable::map(const std::string &string, const std::function<void(const char &)> &func)
 {
     for (size_t i = 0; i < string.size(); i++)

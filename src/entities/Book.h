@@ -20,59 +20,46 @@ private:
     std::string ISBN;
 
 public:
+    /*
+        See Serializable
+    */
     const std::string objToString() const override;
-
     void stringToObject(const std::string &) override;
 
     /*
-        Returns title string
-    */
-    const std::string &getTitle() const;
-
-    /*
-        Returns author name string
-    */
-    const std::string &getAuthor() const;
-
-    /*
-        Returns the year the book was published
-    */
-    const int &getYear() const;
-
-    /*
-        Returns vector of tags
-    */
-    const std::vector<std::string> &getTags() const;
-
-    /*
-        Returns the rating of the book
-    */
-    const double &getRating() const;
-
-    /*
-        Returns ISBN string
-    */
-    const std::string &getISBN() const;
-
-    /*
         Outputs to console
+
+        param detailed - boolean value to determine whether to print all 
+        of the book's characteristics or just basic information
     */
     void print(bool detailed) const;
+
+    /*
+        Getters
+    */
+    const std::string &getTitle() const;
+    const std::string &getAuthor() const;
+    const int &getYear() const;
+    const std::vector<std::string> &getTags() const;
+    const double &getRating() const;
+    const std::string &getISBN() const;
 
     Book(const std::string &, const std::string &, const std::string &,
          const std::string &, const int, const std::vector<std::string> &,
          const double, const std::string &);
-
     Book();
 
+    /*
+        Default memory management
+    */
     Book(const Book &) = default;
-
     ~Book() = default;
-
     Book &operator=(const Book &) = default;
 
+    /*
+        Move operators
+    */
     Book(Book &&);
-
     Book &operator=(Book &&);
 };
 #endif

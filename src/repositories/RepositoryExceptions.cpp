@@ -4,10 +4,6 @@
 #include <exception>
 
 /*
-
-*/
-
-/*
     Base repository exception
 */
 struct RepositoryException : public std::exception
@@ -44,11 +40,11 @@ struct NoSourceException : public RepositoryException
 /*
     Exception for when an error occurs while reading file.
 */
-struct BadFileException : public RepositoryException
+struct BadFormatException : public RepositoryException
 {
     const char *what() const throw() override
     {
-        return "Error occured while reading the file . \n";
+        return "Invalid format. \n";
     }
 };
 

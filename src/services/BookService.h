@@ -50,7 +50,7 @@ public:
 
         Throws NoOpenFileException if no file is open.
     */
-    virtual const std::vector<Book> &getAllBooks() const = 0;
+    virtual const std::vector<Book> getAllBooks() const = 0;
 
     /*
         Returns optional of type book by ISBN.

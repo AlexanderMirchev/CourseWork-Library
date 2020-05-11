@@ -21,6 +21,10 @@ Result execute(const std::function<Result()> &function)
     {
         throw NoOpenFileException();
     }
+    catch (BadFormatException &e)
+    {
+        throw UnreadableFileException();
+    }
 }
 
 template <class Result, class Function>
