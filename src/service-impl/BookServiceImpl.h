@@ -7,6 +7,9 @@
 #include "../services/BookService.h"
 #include "../repositories/BookRepository.h"
 
+/*
+    Implementation for BookService
+*/
 class BookServiceImpl : public BookService
 {
 
@@ -15,24 +18,19 @@ private:
 
 public:
     void openFile(const std::string &fileName) override;
-
     void closeFile() override;
-
     void saveFile() const override;
-
     void saveFileAs(const std::string &newFileName) override;
-
     const std::vector<Book> getAllBooks() const override;
-
     const std::optional<Book> getBookInfo(const std::string &ISBN) const override;
-
     const std::vector<Book> findBooksBy(
         const std::string &option, const std::string &optionString) const override;
-
     const std::vector<Book> sortBooksBy(const std::string &option, const std::string &order) override;
-
     const std::vector<Book> sortBooksBy(const std::string &option) override;
 
+    /*
+        Creates an object with a pointer to repository
+    */
     BookServiceImpl(std::unique_ptr<BookRepository> bookRepository);
 
 private:

@@ -7,6 +7,9 @@
 
 #include "../entities/Book.h"
 
+/*
+    Service interface for actions with books
+*/
 class BookService
 {
 
@@ -16,9 +19,10 @@ public:
     /*
         Sets file to fetch book data.
 
-        -param fileName: name of file to be opened
+        param fileName - name of file to be opened
 
         Throws FileAlreadyOpenedException if file is already open.
+        Throws UnreadableFileException if file can't be read.
     */
     virtual void openFile(const std::string &fileName) = 0;
 
@@ -39,7 +43,7 @@ public:
     /*
         Writes current data to new file
 
-        -param newFileName: name of new file(address)
+        param newFileName - name of new file(address)
 
         Throws NoOpenFileException if no file is open.
     */

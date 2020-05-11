@@ -6,6 +6,9 @@
 #include "../services/UserService.h"
 #include "../repositories/UserRepository.h"
 
+/*
+    Implementation for UserService
+*/
 class UserServiceImpl : public UserService
 {
 
@@ -15,11 +18,12 @@ private:
 public:
     const std::optional<User> authenticateUser(
         const std::string &username, const std::string &password) const override;
-
     void addUser(const std::string &username, const std::string &password) override;
-
     void removeUser(const std::string &username) override;
 
+    /*
+        Creates object with a pointer repository
+    */
     UserServiceImpl(std::unique_ptr<UserRepository> &&userRepository);
 };
 #endif

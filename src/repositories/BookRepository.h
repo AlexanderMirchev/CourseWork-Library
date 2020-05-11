@@ -8,6 +8,9 @@
 
 #include "../entities/Book.h"
 
+/*
+    Interface for CRUD operations for books
+*/
 class BookRepository
 {
 

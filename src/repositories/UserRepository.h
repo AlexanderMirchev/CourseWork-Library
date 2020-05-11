@@ -7,6 +7,9 @@
 
 #include "../entities/User.h"
 
+/*
+    Interface for CRUD operations for users
+*/
 class UserRepository
 {
 

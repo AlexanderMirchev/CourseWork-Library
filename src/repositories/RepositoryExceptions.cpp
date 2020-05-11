@@ -4,6 +4,10 @@
 #include <exception>
 
 /*
+    Low-level exceptions in CRUD operations 
+*/
+
+/*
     Base repository exception
 */
 struct RepositoryException : public std::exception

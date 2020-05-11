@@ -5,6 +5,13 @@
 #include <memory>
 #include "../entities/Book.h"
 
+/*
+    Classes expressing printable results(wrappers on entities/standard classes)
+*/
+
+/*
+    Displayable Result interface
+*/
 class Result
 {
 public:
@@ -13,13 +20,16 @@ public:
     virtual void display() const = 0;
 };
 
+/*
+    Wrapper for a single book
+*/
 class BookResult : public Result
 {
 private:
     Book book;
 
 public:
-    BookResult(const Book &book) : book{std::move(book)} {}
+    BookResult(const Book &book) : book{book} {}
 
     void display() const override
     {
@@ -27,13 +37,16 @@ public:
     }
 };
 
+/*
+    Wrapper for list of books
+*/
 class BookListResult : public Result
 {
 private:
     std::vector<Book> bookList;
 
 public:
-    BookListResult(const std::vector<Book> &bookList) : bookList{std::move(bookList)} {}
+    BookListResult(const std::vector<Book> &bookList) : bookList{bookList} {}
 
     void display() const override
     {
@@ -44,6 +57,9 @@ public:
     }
 };
 
+/*
+    Wrapper for a string message
+*/
 class StringResult : public Result
 {
 private:
@@ -51,7 +67,6 @@ private:
 
 public:
     StringResult(const std::string& string) : string{string} {}
-    StringResult(std::string &&string) : string{std::move(string)} {}
 
     void display() const override
     {

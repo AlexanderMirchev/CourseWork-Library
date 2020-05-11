@@ -11,11 +11,17 @@
 
 #include "../entities/Book.h"
 #include "../entities/User.h"
+
+/*
+    Class for interraction with console
+*/
 class Console
 {
 public:
     /*
-        Separates a string into words and ignores trailing spaces
+        Separates line string into separate words with specific rules:
+        if ' " ' is present, a new word will be added only after a second one is seen
+        else on every space a new word is added to list
     */
     static const std::vector<std::string> readInput(const std::string &line);
 

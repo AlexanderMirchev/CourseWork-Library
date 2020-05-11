@@ -7,6 +7,9 @@
 
 #include "../entities/Serializable.h"
 
+/*
+    Template class for serializing/deserializing objects from files
+*/
 template<class T>
 class EntitySerializer {
 
@@ -17,7 +20,11 @@ public:
         static_assert(std::is_base_of<Serializable, T>::value, "Template must extend Serializable");
         this->fileName = string;
     }
-// throws?
+    /*
+        Returns a vector of entities read from file
+
+        throws BadFormatException if the format of the file does not match the entity
+    */
     const std::vector<T> readAllEntities() const {
         std::ifstream file;
         file.open(this->fileName);
@@ -36,7 +43,10 @@ public:
         return resList;
     }
 
-// throws?
+    /*
+        Saves all entities to the given file
+        (erases everything in file written before that)
+    */
     void writeAllEntities(const std::vector<T>& entities) const {
         std::ofstream file;
         file.open(this->fileName, std::ios::trunc);
