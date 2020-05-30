@@ -45,8 +45,8 @@ const std::string User::objToString() const
 void User::stringToObject(const std::string &string)
 {
     std::vector<std::string> values = separateCSVs(string);
-    const size_t exactRequestedSize = 3;
-    if (values.size() != exactRequestedSize)
+    const size_t exactRequiredSize = 3;
+    if (values.size() != exactRequiredSize)
     {
         throw BadFormatException();
     }

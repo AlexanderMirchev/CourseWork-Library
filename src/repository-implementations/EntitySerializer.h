@@ -14,11 +14,11 @@ template<class T>
 class EntitySerializer {
 
 private:
-    std::string fileName;
+    std::string filename;
 public:
-    EntitySerializer(const std::string& string) {
+    EntitySerializer(const std::string& filename) {
         static_assert(std::is_base_of<Serializable, T>::value, "Template must extend Serializable");
-        this->fileName = string;
+        this->filename = filename;
     }
     /*
         Returns a vector of entities read from file
@@ -27,7 +27,7 @@ public:
     */
     const std::vector<T> readAllEntities() const {
         std::ifstream file;
-        file.open(this->fileName);
+        file.open(this->filename);
 
         std::vector<T> resList;
         if(file.is_open()) {
@@ -49,7 +49,7 @@ public:
     */
     void writeAllEntities(const std::vector<T>& entities) const {
         std::ofstream file;
-        file.open(this->fileName, std::ios::trunc);
+        file.open(this->filename, std::ios::trunc);
 
         for(const T& obj : entities) {
             file << obj.objToString() << std::endl;

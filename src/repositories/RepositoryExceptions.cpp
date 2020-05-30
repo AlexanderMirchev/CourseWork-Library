@@ -23,7 +23,7 @@ struct RepositoryException : public std::exception
 */
 struct SourceAlreadyExistsException : public RepositoryException
 {
-    const char *what() const throw() override
+    const char *what() const noexcept override
     {
         return "There is an existing source already. \n";
     }
@@ -35,7 +35,7 @@ struct SourceAlreadyExistsException : public RepositoryException
 */
 struct NoSourceException : public RepositoryException
 {
-    const char *what() const throw() override
+    const char *what() const noexcept override
     {
         return "No source could be found. \n";
     }
@@ -46,7 +46,7 @@ struct NoSourceException : public RepositoryException
 */
 struct BadFormatException : public RepositoryException
 {
-    const char *what() const throw() override
+    const char *what() const noexcept override
     {
         return "Invalid format. \n";
     }
@@ -59,7 +59,7 @@ struct BadFormatException : public RepositoryException
 */
 struct EntityAlreadyExistsException : public RepositoryException
 {
-    const char *what() const throw() override
+    const char *what() const noexcept override
     {
         return "Entity already exists. \n";
     }
@@ -71,7 +71,7 @@ struct EntityAlreadyExistsException : public RepositoryException
 */
 struct EntityNotFoundException : public RepositoryException
 {
-    const char *what() const throw() override
+    const char *what() const noexcept override
     {
         return "No such entity found. \n";
     }

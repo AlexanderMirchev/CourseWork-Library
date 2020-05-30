@@ -1,7 +1,8 @@
 #include "Controller.h"
 #include <cassert>
 
-const std::unique_ptr<Result> Controller::books(const std::vector<std::string> &commands)
+std::unique_ptr<Result> Controller::books(
+    const std::vector<std::string> &commands, const UserRole &role)
 {
     const unsigned int numberOfWords = commands.size();
     assert(numberOfWords > 1);
@@ -12,7 +13,7 @@ const std::unique_ptr<Result> Controller::books(const std::vector<std::string> &
             [this] {
                 return booksAll();
             },
-            USER, Controller::TWO_WORDS, numberOfWords);
+            USER, role, Controller::TWO_WORDS, numberOfWords);
     }
     if (commands[1] == "info")
     {
@@ -20,7 +21,7 @@ const std::unique_ptr<Result> Controller::books(const std::vector<std::string> &
             [this, commands] {
                 return booksInfo(commands[2]);
             },
-            USER, Controller::THREE_WORDS, numberOfWords);
+            USER, role, Controller::THREE_WORDS, numberOfWords);
     }
     if (commands[1] == "find")
     {
@@ -29,7 +30,7 @@ const std::unique_ptr<Result> Controller::books(const std::vector<std::string> &
                 return booksFind(commands[2],
                                  commands[3]);
             },
-            USER, Controller::FOUR_WORDS, numberOfWords);
+            USER, role, Controller::FOUR_WORDS, numberOfWords);
     }
     if (commands[1] == "sort")
     {
@@ -39,18 +40,19 @@ const std::unique_ptr<Result> Controller::books(const std::vector<std::string> &
                 [this, commands] {
                     return booksSort(commands[2]);
                 },
-                USER, THREE_WORDS, numberOfWords);
+                USER, role, THREE_WORDS, numberOfWords);
         }
         return validateAndExecute(
             [this, commands] {
                 return booksSort(commands[2],
                                  commands[3]);
             },
-            USER, FOUR_WORDS, numberOfWords);
+            USER, role, FOUR_WORDS, numberOfWords);
     }
+    return std::unique_ptr<Result>(new StringResult(INVALID_COMMAND));
 }
 
-const std::unique_ptr<Result> Controller::booksAll() const
+std::unique_ptr<Result> Controller::booksAll() const
 {
     std::vector<Book> books = this->bookService->getAllBooks();
     if (books.size() == 0)
@@ -59,7 +61,7 @@ const std::unique_ptr<Result> Controller::booksAll() const
     }
     return std::unique_ptr<Result>(new BookListResult(books));
 }
-const std::unique_ptr<Result> Controller::booksInfo(const std::string &ISBN) const
+std::unique_ptr<Result> Controller::booksInfo(const std::string &ISBN) const
 {
     std::optional<Book> book = this->bookService->getBookInfo(ISBN);
     if (book.has_value())
@@ -68,7 +70,7 @@ const std::unique_ptr<Result> Controller::booksInfo(const std::string &ISBN) con
     }
     return std::unique_ptr<Result>(new StringResult("Book not found."));
 }
-const std::unique_ptr<Result> Controller::booksFind(
+std::unique_ptr<Result> Controller::booksFind(
     const std::string &option, const std::string &optionString)
 {
     std::vector<Book> books = this->bookService->findBooksBy(option, optionString);
@@ -79,7 +81,7 @@ const std::unique_ptr<Result> Controller::booksFind(
     }
     return std::unique_ptr<Result>(new BookListResult(books));
 }
-const std::unique_ptr<Result> Controller::booksSort(
+std::unique_ptr<Result> Controller::booksSort(
     const std::string &option, const std::string &order)
 {
     std::vector<Book> books = this->bookService->sortBooksBy(option, order);
@@ -89,7 +91,7 @@ const std::unique_ptr<Result> Controller::booksSort(
     }
     return std::unique_ptr<Result>(new BookListResult(books));
 }
-const std::unique_ptr<Result> Controller::booksSort(const std::string &option)
+std::unique_ptr<Result> Controller::booksSort(const std::string &option)
 {
     std::vector<Book> books = this->bookService->sortBooksBy(option, "asc");
     if (books.size() == 0)

@@ -47,7 +47,7 @@ struct AlreadyOpenException : public ServiceException
 struct UnreadableFileException : public ServiceException
 {
 
-    const char *what() const throw() override
+    const char *what() const noexcept override
     {
         return "The given file can't be read.";
     }
@@ -70,7 +70,7 @@ public:
         message = type;
         message += " already exists.";
     }
-    const char *what() const throw() override
+    const char *what() const noexcept override
     {
         return message.c_str();
     }
@@ -93,7 +93,7 @@ public:
         message = type;
         message += " not found.";
     }
-    const char *what() const throw() override
+    const char *what() const noexcept override
     {
         return message.c_str();
     }
@@ -117,7 +117,7 @@ public:
         message = type;
         message += " is invalid.";
     }
-    const char *what() const throw() override
+    const char *what() const noexcept override
     {
         return message.c_str();
     }

@@ -5,7 +5,7 @@
 #include <vector>
 #include <memory>
 
-#include "ResultWrappers.cpp"
+#include "../controller/ResultWrappers.cpp"
 
 #include <utility>
 

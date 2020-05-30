@@ -2,10 +2,12 @@
 Controller::Controller(std::unique_ptr<UserService> &&userService,
                        std::unique_ptr<BookService> &&bookService)
     : userService{std::move(userService)},
-      bookService{std::move(bookService)}, userRole(GUEST) {}
-const std::unique_ptr<Result> Controller::runCommand(
-    const std::vector<std::string> &commands)
+      bookService{std::move(bookService)} {}
+std::unique_ptr<Result> Controller::runCommand(
+    const std::vector<std::string> &commands, const std::optional<User> loggedUser)
 {
+
+    UserRole userRole = getUserRole(loggedUser);
     if (commands.empty())
     {
         return std::unique_ptr<Result>(new StringResult(INVALID_COMMAND));
@@ -20,63 +22,71 @@ const std::unique_ptr<Result> Controller::runCommand(
             [this, commands] {
                 return open(commands[1]);
             },
-            GUEST, Controller::TWO_WORDS, commands.size());
+            GUEST, userRole, Controller::TWO_WORDS, commands.size());
 
     case CLOSE:
         return validateAndExecute(
             [this] {
                 return close();
             },
-            GUEST, Controller::ONE_WORD, commands.size());
+            GUEST, userRole, Controller::ONE_WORD, commands.size());
     case SAVE:
         return validateAndExecute(
             [this] {
                 return save();
             },
-            GUEST, Controller::ONE_WORD, commands.size());
+            GUEST, userRole, Controller::ONE_WORD, commands.size());
     case SAVEAS:
         return validateAndExecute(
             [this, commands] {
                 return saveas(commands[1]);
             },
-            GUEST, Controller::TWO_WORDS, commands.size());
+            GUEST, userRole, Controller::TWO_WORDS, commands.size());
     case HELP:
         return validateAndExecute(
-            [this, commands] {
-                return help();
+            [this, userRole] {
+                return help(userRole);
             },
-            GUEST, Controller::ONE_WORD, commands.size());
+            GUEST, userRole, Controller::ONE_WORD, commands.size());
     case LOGIN:
         return validateAndExecute(
-            [this, commands] {
+            [this, commands, loggedUser] {
                 return login(commands[1], commands[2]);
             },
-            GUEST, Controller::THREE_WORDS, commands.size());
-    case LOGOUT:
-        return validateAndExecute(
-            [this] {
-                return logout();
-            },
-            USER, Controller::ONE_WORD, commands.size());
+            GUEST, userRole, Controller::THREE_WORDS, commands.size());
     case BOOKS:
         if (commands.size() > 1)
         {
-            return books(commands);
+            return books(commands, userRole);
         }
         return std::unique_ptr<Result>(new StringResult(INVALID_COMMAND));
     case USERS:
         if (commands.size() > 1)
         {
-            return users(commands);
+            return users(commands, userRole);
         }
         return std::unique_ptr<Result>(new StringResult(INVALID_COMMAND));
     default:
         return std::unique_ptr<Result>(new StringResult(INVALID_COMMAND));
     };
 }
-bool Controller::hasLoggedUser() const {
-    return loggedUser.has_value();
+
+Controller::UserRole Controller::getUserRole(const std::optional<User> &user)
+{
+    if (!user.has_value())
+    {
+        return GUEST;
+    }
+    if (user.value().isAdmin())
+    {
+        return ADMIN;
+    }
+    else
+    {
+        return USER;
+    }
 }
+
 const Controller::StringToBaseCommandMap Controller::COMMAND_MAP = {
     {"open", OPEN},
     {"close", CLOSE},
@@ -84,7 +94,6 @@ const Controller::StringToBaseCommandMap Controller::COMMAND_MAP = {
     {"saveas", SAVEAS},
     {"help", HELP},
     {"login", LOGIN},
-    {"logout", LOGOUT},
     {"books", BOOKS},
     {"users", USERS}};
 Controller::BaseCommand Controller::findCommand(const std::string &command)
@@ -96,28 +105,33 @@ Controller::BaseCommand Controller::findCommand(const std::string &command)
     }
     return mapEntry->second;
 }
-const std::unique_ptr<Result> Controller::validateAndExecute(
-    const std::function<const std::unique_ptr<Result>()> &command,
-    UserRole requiredRole, const size_t &requiredSize, const size_t &actualSize)
+std::unique_ptr<Result> Controller::validateAndExecute(
+    const std::function<std::unique_ptr<Result>()> &command,
+    const UserRole &requiredRole, const UserRole &actualRole,
+    const size_t &requiredSize, const size_t &actualSize)
 {
     // effective c++ solution to methods with same code but different qualifiers
     return std::as_const(*this)
-        .validateAndExecute(command, requiredRole, requiredSize, actualSize);
+        .validateAndExecute(command, requiredRole, actualRole,
+                            requiredSize, actualSize);
 }
-const std::unique_ptr<Result> Controller::validateAndExecute(
-    const std::function<const std::unique_ptr<Result>()> &command,
-    UserRole requiredRole, const size_t &requiredSize, const size_t &actualSize) const
+std::unique_ptr<Result> Controller::validateAndExecute(
+    const std::function<std::unique_ptr<Result>()> &command,
+    const UserRole &requiredRole, const UserRole &actualRole,
+    const size_t &requiredSize, const size_t &actualSize) const
 {
-    if (requiredRole > this->userRole)
+    if (requiredRole > actualRole)
     {
         return std::unique_ptr<Result>(
             new StringResult("You are not authorized to perform this action."));
     }
+
     if (requiredSize != actualSize)
     {
         return std::unique_ptr<Result>(
             new StringResult("The amount of parameters does not match any function."));
     }
+
     try
     {
         return command();

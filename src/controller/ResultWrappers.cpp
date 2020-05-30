@@ -4,6 +4,7 @@
 #include <iostream>
 #include <memory>
 #include "../entities/Book.h"
+#include "../entities/User.h"
 
 /*
     Classes expressing printable results(wrappers on entities/standard classes)
@@ -66,11 +67,29 @@ private:
     std::string string;
 
 public:
-    StringResult(const std::string& string) : string{string} {}
+    StringResult(const std::string &string) : string{string} {}
 
     void display() const override
     {
         std::cout << this->string << std::endl;
+    }
+};
+
+class UserLoginResult : public Result
+{
+private:
+    User user;
+
+public:
+    UserLoginResult(const User &user) : user{user} {}
+
+    void display() const override
+    {
+        std::cout << "You are logged in as " << user.getUsername();
+    }
+    const User &getUser() const
+    {
+        return this->user;
     }
 };
 #endif

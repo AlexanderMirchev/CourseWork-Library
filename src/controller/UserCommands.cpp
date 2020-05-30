@@ -1,7 +1,8 @@
 #include "Controller.h"
 #include <cassert>
 
-const std::unique_ptr<Result> Controller::users(const std::vector<std::string> &commands)
+std::unique_ptr<Result> Controller::users(
+    const std::vector<std::string> &commands, const UserRole &role)
 {
     const unsigned int numberOfWords = commands.size();
     assert(numberOfWords > 1);
@@ -12,7 +13,7 @@ const std::unique_ptr<Result> Controller::users(const std::vector<std::string> &
                 return usersAdd(commands[2],
                                 commands[3]);
             },
-            ADMIN, FOUR_WORDS, numberOfWords);
+            ADMIN, role, FOUR_WORDS, numberOfWords);
     }
     if (commands[1] == "remove")
     {
@@ -20,16 +21,17 @@ const std::unique_ptr<Result> Controller::users(const std::vector<std::string> &
             [this, commands] {
                 return usersRemove(commands[2]);
             },
-            ADMIN, THREE_WORDS, numberOfWords);
+            ADMIN, role, THREE_WORDS, numberOfWords);
     }
+    return std::unique_ptr<Result>(new StringResult(INVALID_COMMAND));
 }
-const std::unique_ptr<Result> Controller::usersAdd(
+std::unique_ptr<Result> Controller::usersAdd(
     const std::string &username, const std::string &password)
 {
     this->userService->addUser(username, password);
     return std::unique_ptr<Result>(new StringResult("User successfully added."));
 }
-const std::unique_ptr<Result> Controller::usersRemove(const std::string &username)
+std::unique_ptr<Result> Controller::usersRemove(const std::string &username)
 {
     this->userService->removeUser(username);
     return std::unique_ptr<Result>(new StringResult("User successfully removed."));
