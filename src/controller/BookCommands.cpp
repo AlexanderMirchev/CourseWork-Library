@@ -95,7 +95,7 @@ std::unique_ptr<Result> Controller::booksFind(
         return std::unique_ptr<Result>(new StringResult(
             "No books with the given criteria found."));
     }
-    return std::unique_ptr<Result>(new BookListResult(books));
+    return std::unique_ptr<Result>(new BookListResult(books, option));
 }
 std::unique_ptr<Result> Controller::booksSort(
     const std::string &option, const std::string &order)
@@ -105,7 +105,7 @@ std::unique_ptr<Result> Controller::booksSort(
     {
         return std::unique_ptr<Result>(new StringResult("No books to sort."));
     }
-    return std::unique_ptr<Result>(new BookListResult(books));
+    return std::unique_ptr<Result>(new BookListResult(books, option));
 }
 std::unique_ptr<Result> Controller::booksSort(const std::string &option)
 {
@@ -114,7 +114,7 @@ std::unique_ptr<Result> Controller::booksSort(const std::string &option)
     {
         return std::unique_ptr<Result>(new StringResult("No books to sort."));
     }
-    return std::unique_ptr<Result>(new BookListResult(books));
+    return std::unique_ptr<Result>(new BookListResult(books, option));
 }
 std::unique_ptr<Result> Controller::booksAdd(
     const std::string &ISBN, const std::string &bookProperties)

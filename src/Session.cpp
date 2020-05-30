@@ -53,6 +53,7 @@ void Session::start()
             }
             Console::display(result);
             shouldExecute = false;
+            std::cout << std::endl;
         }
         if (command.size() == 1 && command[0] == "logout")
         {
@@ -68,6 +69,7 @@ void Session::start()
             }
             Console::display(std::unique_ptr<Result>(new StringResult(message)));
             shouldExecute = false;
+            std::cout << std::endl;
         }
         if (command.size() == 1 && command[0] == "exit")
         {
@@ -83,6 +85,7 @@ void Session::start()
         if (shouldExecute)
         {
             Console::display(controller.runCommand(command, loggedUser));
+            std::cout << std::endl;
         }
     }
 }

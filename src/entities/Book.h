@@ -27,12 +27,15 @@ public:
     void stringToObject(const std::string &) override;
 
     /*
+        Prints book detailed
+    */
+    void print() const;
+    /*
         Outputs to console
 
-        param detailed - boolean value to determine whether to print all 
-        of the book's characteristics or just basic information
+        param string - the field to be printed
     */
-    void print(bool detailed) const;
+    void print(const std::string &) const;
 
     /*
         Getters

@@ -34,7 +34,7 @@ public:
 
     void display() const override
     {
-        this->book.print(true);
+        this->book.print();
     }
 };
 
@@ -45,15 +45,19 @@ class BookListResult : public Result
 {
 private:
     std::vector<Book> bookList;
+    std::string option;
 
 public:
     BookListResult(const std::vector<Book> &bookList) : bookList{bookList} {}
+    BookListResult(const std::vector<Book> &bookList,
+                   const std::string &option)
+        : bookList{bookList}, option{option} {}
 
     void display() const override
     {
         for (const Book &book : this->bookList)
         {
-            book.print(false);
+            book.print(option);
         }
     }
 };

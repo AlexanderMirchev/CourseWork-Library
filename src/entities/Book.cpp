@@ -29,7 +29,7 @@ void Book::stringToObject(const std::string &string)
     {
         throw BadFormatException();
     }
-    
+
     unsigned int iterator = 0;
 
     this->title = values[iterator++];
@@ -46,28 +46,49 @@ void Book::stringToObject(const std::string &string)
     this->rating = std::stod(values[iterator++]);
     this->ISBN = values[iterator++];
 }
-void Book::print(bool detailed) const
+
+void Book::print() const
 {
-    if (detailed)
+    std::cout << "Title: " << this->title;
+    std::cout << "\nAuthor: " << this->author;
+    std::cout << "\nYear: " << this->year;
+    std::cout << "\nGenre: " << this->genre;
+    std::cout << "\nDescription: " << this->description;
+    std::cout << "\nTags: ";
+    for (const std::string &tag : this->tags)
     {
-        std::cout << "Title: " << this->title;
-        std::cout << "\nAuthor: " << this->author;
-        std::cout << "\nYear: " << this->year;
-        std::cout << "\nGenre: " << this->genre;
-        std::cout << "\nDescription: " << this->description;
-        std::cout << "\nTags: ";
-        for (const std::string &tag : this->tags)
+        std::cout << tag << " ";
+    }
+    std::cout << "\nRating: " << this->rating;
+    std::cout << "\nISBN: " << this->ISBN << std::endl;
+}
+
+void Book::print(const std::string &option) const
+{
+    std::cout << this->title << " by "
+              << this->author << ", ISBN: " << this->ISBN;
+    if (option == "tag")
+    {
+        std::cout << ", Tags: ";
+        std::vector<std::string>::const_iterator iter;
+        for (iter = this->tags.begin(); iter < this->tags.end(); iter++)
         {
-            std::cout << tag << " ";
+            std::cout << *iter;
+            if (iter+1 != this->tags.end())
+            {
+                std::cout << ", ";
+            }
         }
-        std::cout << "\nRating: " << this->rating;
-        std::cout << "\nISBN: " << this->ISBN << std::endl;
     }
-    else
+    else if (option == "year")
     {
-        std::cout << this->title << " by "
-                  << this->author << " " << this->ISBN << std::endl;
+        std::cout << ", Year: " << this->year;
     }
+    else if (option == "rating")
+    {
+        std::cout << ", Rating: " << this->rating;
+    }
+    std::cout << std::endl;
 }
 
 Book::Book(const std::string &author, const std::string &title, const std::string &genre,
