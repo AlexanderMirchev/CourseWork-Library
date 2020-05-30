@@ -20,13 +20,17 @@ const std::optional<User> UserServiceImpl::authenticateUser(
 }
 void UserServiceImpl::addUser(const std::string &username, const std::string &password)
 {
-    execute<void>([this, username, password]() {
-        this->userRepository->addUser(User(username, password, false));
-    }, "User");
+    execute<void>(
+        [this, username, password]() {
+            this->userRepository->addUser(User(username, password, false));
+        },
+        "User");
 }
 void UserServiceImpl::removeUser(const std::string &username)
 {
-    execute<void>([this, username]() {
-        this->userRepository->removeUserByUsername(username);
-    }, "User");
+    execute<void>(
+        [this, username]() {
+            this->userRepository->removeUserByUsername(username);
+        },
+        "User");
 }

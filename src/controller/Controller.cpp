@@ -151,19 +151,21 @@ const std::string Controller::HELP_MESSAGE_GUEST =
     std::string("Help:\n open <filename> - opens file to read from\n ") +
     std::string("close - closes opened file\n save - saves current changes to file\n ") +
     std::string("saveas <filename> - saves current changes to given file\n ") +
-    std::string("exit - exits the program\n login - login for user with username and password\n ");
+    std::string("exit - exits the program\n login - login for user with username and password");
 const std::string Controller::HELP_MESSAGE_USER =
-    HELP_MESSAGE_GUEST + std::string("logout - logouts the current user\n ") +
+    HELP_MESSAGE_GUEST + std::string("\n logout - logouts the current user\n ") +
     std::string("books all - displays all books form file\n ") +
     std::string("books info <ISBN> - displays the book with the given isbn\n ") +
     std::string("books find <option> <option string>") +
     std::string(" - finds all books by option(title, author, tag)\n ") +
     std::string("books sort <option> [asc/desc] + - sorts all books by ") +
-    std::string("option(title,author, year, rating) in ascending or descending order(optional)\n ");
+    std::string("option(title,author, year, rating) in ascending or descending order(optional)");
 const std::string Controller::HELP_MESSAGE_ADMIN =
     HELP_MESSAGE_USER +
+    std::string("\n books add - add a book with all characteristics\n ") +  
+    std::string("books remove <ISBN> - removes a book by ISBN\n ") +
     std::string("users add <username> <password> - creates new user with username and password\n ") +
-    std::string("users remove <username> - removes user with username\n ");
+    std::string("users remove <username> - removes user with username ");
 
 const size_t Controller::ONE_WORD = 1;
 const size_t Controller::TWO_WORDS = 2;

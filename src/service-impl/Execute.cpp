@@ -46,6 +46,18 @@ Result execute(const Function &function, const std::string &specifier)
     {
         return function();
     }
+    catch (SourceAlreadyExistsException &e)
+    {
+        throw AlreadyOpenException();
+    }
+    catch (NoSourceException &e)
+    {
+        throw NoOpenFileException();
+    }
+    catch (BadFormatException &e)
+    {
+        throw UnreadableFileException();
+    }
     catch (EntityAlreadyExistsException &e)
     {
         throw AlreadyExistsException(specifier);

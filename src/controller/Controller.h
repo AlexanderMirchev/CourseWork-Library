@@ -108,6 +108,9 @@ private:
                                       const std::string &optionString);
     std::unique_ptr<Result> booksSort(const std::string &option, const std::string &order);
     std::unique_ptr<Result> booksSort(const std::string &option);
+    std::unique_ptr<Result> booksAdd(
+        const std::string &ISBN, const std::string &bookProperties);
+    std::unique_ptr<Result> booksRemove(const std::string &ISBN);
 
     /*
         User commands

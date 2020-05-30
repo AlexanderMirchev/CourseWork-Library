@@ -85,7 +85,8 @@ public:
 
     void display() const override
     {
-        std::cout << "You are logged in as " << user.getUsername();
+        std::cout << "You are logged in as "
+                  << user.getUsername() << std::endl;
     }
     const User &getUser() const
     {

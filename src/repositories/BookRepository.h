@@ -54,5 +54,10 @@ public:
         Throws NoSourceException if no file is opened.
     */
     virtual const std::optional<Book> getBookByISBN(const std::string &ISBN) const = 0;
+
+    virtual void addBook(
+        const std::string &ISBN, const std::string &propertiesInCSV) = 0;
+
+    virtual void removeBook(const std::string &ISBN) = 0;
 };
 #endif

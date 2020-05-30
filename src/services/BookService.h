@@ -88,5 +88,9 @@ public:
         Throws InvalidOptionException if option is not a valid field.
     */
     virtual const std::vector<Book> sortBooksBy(const std::string &option) = 0;
+
+    virtual void addBook(
+        const std::string &ISBN, const std::string &csvProperties) = 0;
+    virtual void removeBook(const std::string &ISBN) = 0;
 };
 #endif

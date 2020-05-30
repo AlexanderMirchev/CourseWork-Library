@@ -65,3 +65,40 @@ const std::optional<Book> BookRepositoryImpl::getBookByISBN(const std::string &I
     }
     return std::nullopt;
 }
+
+void BookRepositoryImpl::addBook(
+    const std::string &ISBN, const std::string &propertiesInCSV)
+{
+    if (!this->serializer.has_value())
+    {
+        throw NoSourceException();
+    }
+    for (const Book &book : this->books)
+    {
+        if (book.getISBN() == ISBN)
+        {
+            throw EntityAlreadyExistsException();
+        }
+    }
+    Book newBook;
+    newBook.stringToObject(propertiesInCSV);
+    this->books.push_back(newBook);
+}
+
+void BookRepositoryImpl::removeBook(const std::string &ISBN)
+{
+    if (!this->serializer.has_value())
+    {
+        throw NoSourceException();
+    }
+    std::vector<Book>::iterator iter;
+    for (iter = this->books.begin(); iter < this->books.end(); iter++)
+    {
+        if (iter->getISBN() == ISBN)
+        {
+            this->books.erase(iter);
+            return;
+        }
+    }
+    throw EntityNotFoundException();
+}

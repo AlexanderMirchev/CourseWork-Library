@@ -86,6 +86,22 @@ const std::vector<Book> BookServiceImpl::sortBooksBy(const std::string &option)
 {
     return sortBooksBy(option, "asc");
 }
+void BookServiceImpl::addBook(const std::string &ISBN, const std::string &csvProperties)
+{
+    execute<void>(
+        [this, ISBN, csvProperties] {
+            this->bookRepository->addBook(ISBN, csvProperties);
+        },
+        "Book");
+}
+void BookServiceImpl::removeBook(const std::string &ISBN)
+{
+    execute<void>(
+        [this, ISBN] {
+            this->bookRepository->removeBook(ISBN);
+        },
+        "Book");
+}
 
 BookServiceImpl::Filter BookServiceImpl::getFilterFromOption(const std::string &option)
 {

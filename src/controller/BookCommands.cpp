@@ -49,6 +49,22 @@ std::unique_ptr<Result> Controller::books(
             },
             USER, role, FOUR_WORDS, numberOfWords);
     }
+    if (commands[1] == "add")
+    {
+        return validateAndExecute(
+            [this, commands] {
+                return booksAdd(commands[2], commands[3]);
+            },
+            ADMIN, role, FOUR_WORDS, numberOfWords);
+    }
+    if (commands[1] == "remove")
+    {
+        return validateAndExecute(
+            [this, commands] {
+                return booksRemove(commands[2]);
+            },
+            ADMIN, role, THREE_WORDS, numberOfWords);
+    }
     return std::unique_ptr<Result>(new StringResult(INVALID_COMMAND));
 }
 
@@ -99,4 +115,17 @@ std::unique_ptr<Result> Controller::booksSort(const std::string &option)
         return std::unique_ptr<Result>(new StringResult("No books to sort."));
     }
     return std::unique_ptr<Result>(new BookListResult(books));
+}
+std::unique_ptr<Result> Controller::booksAdd(
+    const std::string &ISBN, const std::string &bookProperties)
+{
+    this->bookService->addBook(ISBN, bookProperties);
+    return std::unique_ptr<Result>(
+        new StringResult("Book successfully added."));
+}
+std::unique_ptr<Result> Controller::booksRemove(const std::string &ISBN)
+{
+    this->bookService->removeBook(ISBN);
+    return std::unique_ptr<Result>(
+        new StringResult("Book successfully removed."));
 }
