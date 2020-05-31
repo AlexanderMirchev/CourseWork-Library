@@ -1,3 +1,0 @@
-Jelezniq Svetilnik,Dimitar Talev,Novel,A book about the bulgarian fight for freedom,1880,novel,bulgarian,classic,10.000000,2224
-Razkazi,Elin Pelin,Short stories,Razkazi na Elin Pelin,1910,short stories,bulgarian,classic,village,10.000000,1025
-Chichovci,Ivan Vazov,Novel,Book about uncles,1870,uncles,classic,23.000000,234
