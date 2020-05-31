@@ -12,10 +12,10 @@
 #include "../services/UserService.h"
 #include "../services/BookService.h"
 #include "../services/ServiceExceptions.cpp"
-#include "ResultWrappers.cpp"
+#include "ResultWrappers.h"
 
-/*
-    A class that resolves the command provided by user and redirects it accordingly
+/**
+ * A class that resolves the command provided by user and redirects it accordingly
 */
 class Controller
 {
@@ -40,8 +40,6 @@ private:
         USERS
     };
 
-    // std::optional<User> loggedUser;
-    std::optional<std::string> openedFile;
     std::unique_ptr<UserService> userService;
     std::unique_ptr<BookService> bookService;
 
@@ -49,13 +47,9 @@ public:
     Controller(std::unique_ptr<UserService> &&userService,
                std::unique_ptr<BookService> &&bookService);
 
-    // /*
-    //     A check whether the current session has user
-    // */
-    // bool hasLoggedUser() const;
-
-    /*
-        Redirects which function to be called according to the list of commands
+    /**
+     * Redirects which function to be called according to the list of commands
+     * Returns an unique pointer to value of type Result
     */
     std::unique_ptr<Result> runCommand(
         const std::vector<std::string> &, std::optional<User>);
@@ -75,6 +69,7 @@ private:
     static UserRole getUserRole(const std::optional<User> &);
     /*
         Functions to absorb the lower-level exceptions into user output
+        and validate the requested action
     */
     std::unique_ptr<Result> validateAndExecute(
         const std::function<std::unique_ptr<Result>()> &command,

@@ -1,0 +1,64 @@
+\hypertarget{classUserService}{}\section{User\+Service Class Reference}
+\label{classUserService}\index{User\+Service@{User\+Service}}
+
+
+{\ttfamily \#include $<$User\+Service.\+h$>$}
+
+
+
+Inheritance diagram for User\+Service\+:
+% FIG 0
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual const std\+::optional$<$ \hyperlink{classUser}{User} $>$ \hyperlink{classUserService_ae98e5e71adb53af6fdafb270a766f512}{authenticate\+User} (const std\+::string \&username, const std\+::string \&password) const =0
+\item 
+virtual void \hyperlink{classUserService_a7eb582fe91a2a83a433dbe461a2f1457}{add\+User} (const std\+::string \&username, const std\+::string \&password)=0
+\item 
+virtual void \hyperlink{classUserService_aab158c8d9ed5c8cf7d62b762d62ea9b4}{remove\+User} (const std\+::string \&username)=0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Service interface for actions with users 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classUserService_a7eb582fe91a2a83a433dbe461a2f1457}\label{classUserService_a7eb582fe91a2a83a433dbe461a2f1457}} 
+\index{User\+Service@{User\+Service}!add\+User@{add\+User}}
+\index{add\+User@{add\+User}!User\+Service@{User\+Service}}
+\subsubsection{\texorpdfstring{add\+User()}{addUser()}}
+{\footnotesize\ttfamily virtual void User\+Service\+::add\+User (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{username,  }\item[{const std\+::string \&}]{password }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Creates non-\/admin user with username and password.
+
+Throws \hyperlink{classAlreadyExistsException}{Already\+Exists\+Exception} 
+
+Implemented in \hyperlink{classUserServiceImpl_adf6e4832c7da54d3894f3eb554a8ffe1}{User\+Service\+Impl}.
+
+\mbox{\Hypertarget{classUserService_ae98e5e71adb53af6fdafb270a766f512}\label{classUserService_ae98e5e71adb53af6fdafb270a766f512}} 
+\index{User\+Service@{User\+Service}!authenticate\+User@{authenticate\+User}}
+\index{authenticate\+User@{authenticate\+User}!User\+Service@{User\+Service}}
+\subsubsection{\texorpdfstring{authenticate\+User()}{authenticateUser()}}
+{\footnotesize\ttfamily virtual const std\+::optional$<$\hyperlink{classUser}{User}$>$ User\+Service\+::authenticate\+User (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{username,  }\item[{const std\+::string \&}]{password }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Returns optional value for user if one with same username and password is found 
+
+Implemented in \hyperlink{classUserServiceImpl_a6ea0a8f645f2be10ca7d48ca232fe70a}{User\+Service\+Impl}.
+
+\mbox{\Hypertarget{classUserService_aab158c8d9ed5c8cf7d62b762d62ea9b4}\label{classUserService_aab158c8d9ed5c8cf7d62b762d62ea9b4}} 
+\index{User\+Service@{User\+Service}!remove\+User@{remove\+User}}
+\index{remove\+User@{remove\+User}!User\+Service@{User\+Service}}
+\subsubsection{\texorpdfstring{remove\+User()}{removeUser()}}
+{\footnotesize\ttfamily virtual void User\+Service\+::remove\+User (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{username }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Removes user with username.
+
+Throws \hyperlink{classNotFoundException}{Not\+Found\+Exception} 
+
+Implemented in \hyperlink{classUserServiceImpl_a3549c348a3c24d4b0519339c0123460d}{User\+Service\+Impl}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Project-\/\+Library/src/services/User\+Service.\+h\end{DoxyCompactItemize}

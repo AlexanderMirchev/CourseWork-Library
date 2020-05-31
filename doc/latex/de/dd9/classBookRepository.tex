@@ -1,0 +1,136 @@
+\hypertarget{classBookRepository}{}\section{Book\+Repository Class Reference}
+\label{classBookRepository}\index{Book\+Repository@{Book\+Repository}}
+
+
+{\ttfamily \#include $<$Book\+Repository.\+h$>$}
+
+
+
+Inheritance diagram for Book\+Repository\+:
+% FIG 0
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classBookRepository_af4ffa5253ce6cd4e0e2d24d32090daab}{set\+Source} (const std\+::string \&)=0
+\item 
+virtual void \hyperlink{classBookRepository_a0019e716ba40e39d2ef01e639347e8f9}{fetch} ()=0
+\item 
+virtual void \hyperlink{classBookRepository_ab1645ea5f97fd9d1ae5395b8234a3b7a}{remove\+Source} ()=0
+\item 
+virtual void \hyperlink{classBookRepository_a943be98eae0c0d4b3b453284a39653c3}{save\+Changes} () const =0
+\item 
+virtual const std\+::vector$<$ \hyperlink{classBook}{Book} $>$ \& \hyperlink{classBookRepository_a4cc8b9c8427d4ef32cd671b87a0d17b0}{get\+All\+Books} () const =0
+\item 
+virtual const std\+::optional$<$ \hyperlink{classBook}{Book} $>$ \hyperlink{classBookRepository_a0334aacb95e6bd4ff7477b9b9ba1e72f}{get\+Book\+By\+I\+S\+BN} (const std\+::string \&I\+S\+BN) const =0
+\item 
+virtual void \hyperlink{classBookRepository_a3147ce44d65a78bf2c2480639811a55c}{add\+Book} (const std\+::string \&I\+S\+BN, const std\+::string \&properties\+In\+C\+SV)=0
+\item 
+virtual void \hyperlink{classBookRepository_a2e0c4e643ea43750b99c2a380dc1e43d}{remove\+Book} (const std\+::string \&I\+S\+BN)=0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Interface for C\+R\+UD operations for books 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classBookRepository_a3147ce44d65a78bf2c2480639811a55c}\label{classBookRepository_a3147ce44d65a78bf2c2480639811a55c}} 
+\index{Book\+Repository@{Book\+Repository}!add\+Book@{add\+Book}}
+\index{add\+Book@{add\+Book}!Book\+Repository@{Book\+Repository}}
+\subsubsection{\texorpdfstring{add\+Book()}{addBook()}}
+{\footnotesize\ttfamily virtual void Book\+Repository\+::add\+Book (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{I\+S\+BN,  }\item[{const std\+::string \&}]{properties\+In\+C\+SV }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Adds a book(generated from C\+S\+V string) to current list of books if I\+S\+BN is unique
+
+Throws \hyperlink{structEntityAlreadyExistsException}{Entity\+Already\+Exists\+Exception} Throws \hyperlink{structNoSourceException}{No\+Source\+Exception} if no file is opened. 
+
+Implemented in \hyperlink{classBookRepositoryImpl_a8b9d7df06f6ab11efd72cb32cbfb52fe}{Book\+Repository\+Impl}.
+
+\mbox{\Hypertarget{classBookRepository_a0019e716ba40e39d2ef01e639347e8f9}\label{classBookRepository_a0019e716ba40e39d2ef01e639347e8f9}} 
+\index{Book\+Repository@{Book\+Repository}!fetch@{fetch}}
+\index{fetch@{fetch}!Book\+Repository@{Book\+Repository}}
+\subsubsection{\texorpdfstring{fetch()}{fetch()}}
+{\footnotesize\ttfamily virtual void Book\+Repository\+::fetch (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Gets all entities from source file.
+
+Throws \hyperlink{structNoSourceException}{No\+Source\+Exception} if no file is opened. Throws \hyperlink{structBadFormatException}{Bad\+Format\+Exception} if the file does not meet the book requirements 
+
+Implemented in \hyperlink{classBookRepositoryImpl_aec9b4797e9153c1088c7e4a6659124be}{Book\+Repository\+Impl}.
+
+\mbox{\Hypertarget{classBookRepository_a4cc8b9c8427d4ef32cd671b87a0d17b0}\label{classBookRepository_a4cc8b9c8427d4ef32cd671b87a0d17b0}} 
+\index{Book\+Repository@{Book\+Repository}!get\+All\+Books@{get\+All\+Books}}
+\index{get\+All\+Books@{get\+All\+Books}!Book\+Repository@{Book\+Repository}}
+\subsubsection{\texorpdfstring{get\+All\+Books()}{getAllBooks()}}
+{\footnotesize\ttfamily virtual const std\+::vector$<$\hyperlink{classBook}{Book}$>$\& Book\+Repository\+::get\+All\+Books (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Returns all books.
+
+Throws \hyperlink{structNoSourceException}{No\+Source\+Exception} if no file is opened. 
+
+Implemented in \hyperlink{classBookRepositoryImpl_aa3603924efed4ec623235193d2350569}{Book\+Repository\+Impl}.
+
+\mbox{\Hypertarget{classBookRepository_a0334aacb95e6bd4ff7477b9b9ba1e72f}\label{classBookRepository_a0334aacb95e6bd4ff7477b9b9ba1e72f}} 
+\index{Book\+Repository@{Book\+Repository}!get\+Book\+By\+I\+S\+BN@{get\+Book\+By\+I\+S\+BN}}
+\index{get\+Book\+By\+I\+S\+BN@{get\+Book\+By\+I\+S\+BN}!Book\+Repository@{Book\+Repository}}
+\subsubsection{\texorpdfstring{get\+Book\+By\+I\+S\+B\+N()}{getBookByISBN()}}
+{\footnotesize\ttfamily virtual const std\+::optional$<$\hyperlink{classBook}{Book}$>$ Book\+Repository\+::get\+Book\+By\+I\+S\+BN (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{I\+S\+BN }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Returns optional value of book by I\+S\+BN.
+
+Throws \hyperlink{structNoSourceException}{No\+Source\+Exception} if no file is opened. 
+
+Implemented in \hyperlink{classBookRepositoryImpl_ab41594acd9ec505c0eaa048fa1ae2c19}{Book\+Repository\+Impl}.
+
+\mbox{\Hypertarget{classBookRepository_a2e0c4e643ea43750b99c2a380dc1e43d}\label{classBookRepository_a2e0c4e643ea43750b99c2a380dc1e43d}} 
+\index{Book\+Repository@{Book\+Repository}!remove\+Book@{remove\+Book}}
+\index{remove\+Book@{remove\+Book}!Book\+Repository@{Book\+Repository}}
+\subsubsection{\texorpdfstring{remove\+Book()}{removeBook()}}
+{\footnotesize\ttfamily virtual void Book\+Repository\+::remove\+Book (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{I\+S\+BN }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Removes a book from current list of books if I\+S\+BN match is found
+
+Throws \hyperlink{structEntityNotFoundException}{Entity\+Not\+Found\+Exception} Throws \hyperlink{structNoSourceException}{No\+Source\+Exception} if no file is opened. 
+
+Implemented in \hyperlink{classBookRepositoryImpl_aefed48951263bb21153b24fd7bcf0e1c}{Book\+Repository\+Impl}.
+
+\mbox{\Hypertarget{classBookRepository_ab1645ea5f97fd9d1ae5395b8234a3b7a}\label{classBookRepository_ab1645ea5f97fd9d1ae5395b8234a3b7a}} 
+\index{Book\+Repository@{Book\+Repository}!remove\+Source@{remove\+Source}}
+\index{remove\+Source@{remove\+Source}!Book\+Repository@{Book\+Repository}}
+\subsubsection{\texorpdfstring{remove\+Source()}{removeSource()}}
+{\footnotesize\ttfamily virtual void Book\+Repository\+::remove\+Source (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Removes current input/output file.
+
+Throws \hyperlink{structNoSourceException}{No\+Source\+Exception} if no file is opened. 
+
+Implemented in \hyperlink{classBookRepositoryImpl_a1550bae55aa379da68b4391bcc0648eb}{Book\+Repository\+Impl}.
+
+\mbox{\Hypertarget{classBookRepository_a943be98eae0c0d4b3b453284a39653c3}\label{classBookRepository_a943be98eae0c0d4b3b453284a39653c3}} 
+\index{Book\+Repository@{Book\+Repository}!save\+Changes@{save\+Changes}}
+\index{save\+Changes@{save\+Changes}!Book\+Repository@{Book\+Repository}}
+\subsubsection{\texorpdfstring{save\+Changes()}{saveChanges()}}
+{\footnotesize\ttfamily virtual void Book\+Repository\+::save\+Changes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Writes current list of books to file.
+
+Throws \hyperlink{structNoSourceException}{No\+Source\+Exception} if no file is opened. 
+
+Implemented in \hyperlink{classBookRepositoryImpl_a1c28f61a8981b52aa45ca1b11ef0e099}{Book\+Repository\+Impl}.
+
+\mbox{\Hypertarget{classBookRepository_af4ffa5253ce6cd4e0e2d24d32090daab}\label{classBookRepository_af4ffa5253ce6cd4e0e2d24d32090daab}} 
+\index{Book\+Repository@{Book\+Repository}!set\+Source@{set\+Source}}
+\index{set\+Source@{set\+Source}!Book\+Repository@{Book\+Repository}}
+\subsubsection{\texorpdfstring{set\+Source()}{setSource()}}
+{\footnotesize\ttfamily virtual void Book\+Repository\+::set\+Source (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Sets input/output file for repository.
+
+Throws \hyperlink{structSourceAlreadyExistsException}{Source\+Already\+Exists\+Exception} if there is a file already open 
+
+Implemented in \hyperlink{classBookRepositoryImpl_aea4f6c50587d26ba6bf4bbfd41001dfd}{Book\+Repository\+Impl}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Project-\/\+Library/src/repositories/Book\+Repository.\+h\end{DoxyCompactItemize}

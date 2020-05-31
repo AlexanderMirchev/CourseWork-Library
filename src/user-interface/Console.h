@@ -5,28 +5,32 @@
 #include <vector>
 #include <memory>
 
-#include "../controller/ResultWrappers.cpp"
+#include "../controller/ResultWrappers.h"
 
 #include <utility>
 
 #include "../entities/Book.h"
 #include "../entities/User.h"
 
-/*
-    Class for interraction with console
+/**
+ * Class for interraction with console
 */
 class Console
 {
 public:
-    /*
-        Separates line string into separate words with specific rules:
-        if ' " ' is present, a new word will be added only after a second one is seen
-        else on every space a new word is added to list
+    /**
+     * Separates line string into separate words with specific rules:
+     * if ' " ' is present, a new word will be added only after a second one is seen
+     * else on every space a new word is added to list
+     * 
+     * Example:
+     * books find author "Ivan Vazov" - 4 words
+     * books find author Ivan Vazov - 5 words
     */
     static const std::vector<std::string> readInput(const std::string &line);
 
-    /*
-        Overloaded function to display message onto console
+    /**
+     * Displays the value of the result
     */
     static void display(const std::unique_ptr<Result> &result);
 

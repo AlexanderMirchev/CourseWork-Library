@@ -6,8 +6,8 @@
 #include "../services/UserService.h"
 #include "../repositories/UserRepository.h"
 
-/*
-    Implementation for UserService
+/**
+ * Implementation of UserService
 */
 class UserServiceImpl : public UserService
 {
@@ -21,8 +21,8 @@ public:
     void addUser(const std::string &username, const std::string &password) override;
     void removeUser(const std::string &username) override;
 
-    /*
-        Creates object with a pointer repository
+    /**
+     * Wires repository
     */
     UserServiceImpl(std::unique_ptr<UserRepository> &&userRepository);
 };

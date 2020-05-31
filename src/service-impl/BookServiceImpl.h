@@ -7,8 +7,8 @@
 #include "../services/BookService.h"
 #include "../repositories/BookRepository.h"
 
-/*
-    Implementation for BookService
+/**
+ * Implementation of BookService
 */
 class BookServiceImpl : public BookService
 {
@@ -27,12 +27,11 @@ public:
         const std::string &option, const std::string &optionString) const override;
     const std::vector<Book> sortBooksBy(const std::string &option, const std::string &order) override;
     const std::vector<Book> sortBooksBy(const std::string &option) override;
-
     void addBook(const std::string &ISBN, const std::string &csvProperties) override;
     void removeBook(const std::string &ISBN) override;
 
-    /*
-        Creates an object with a pointer to repository
+    /**
+     * Wires repository
     */
     BookServiceImpl(std::unique_ptr<BookRepository> bookRepository);
 

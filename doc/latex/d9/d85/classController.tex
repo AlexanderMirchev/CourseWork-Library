@@ -1,0 +1,35 @@
+\hypertarget{classController}{}\section{Controller Class Reference}
+\label{classController}\index{Controller@{Controller}}
+
+
+{\ttfamily \#include $<$Controller.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classController_a0100622640979bd3c34e4ade3c091c8f}\label{classController_a0100622640979bd3c34e4ade3c091c8f}} 
+{\bfseries Controller} (std\+::unique\+\_\+ptr$<$ \hyperlink{classUserService}{User\+Service} $>$ \&\&user\+Service, std\+::unique\+\_\+ptr$<$ \hyperlink{classBookService}{Book\+Service} $>$ \&\&book\+Service)
+\item 
+std\+::unique\+\_\+ptr$<$ \hyperlink{classResult}{Result} $>$ \hyperlink{classController_adcde0e591fc3b9e1cf74535edd35de0d}{run\+Command} (const std\+::vector$<$ std\+::string $>$ \&, std\+::optional$<$ \hyperlink{classUser}{User} $>$)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A class that resolves the command provided by user and redirects it accordingly 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classController_adcde0e591fc3b9e1cf74535edd35de0d}\label{classController_adcde0e591fc3b9e1cf74535edd35de0d}} 
+\index{Controller@{Controller}!run\+Command@{run\+Command}}
+\index{run\+Command@{run\+Command}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{run\+Command()}{runCommand()}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ \hyperlink{classResult}{Result} $>$ Controller\+::run\+Command (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::string $>$ \&}]{commands,  }\item[{std\+::optional$<$ \hyperlink{classUser}{User} $>$}]{logged\+User }\end{DoxyParamCaption})}
+
+Redirects which function to be called according to the list of commands Returns an unique pointer to value of type \hyperlink{classResult}{Result} 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Project-\/\+Library/src/controller/Controller.\+h\item 
+Project-\/\+Library/src/controller/Book\+Commands.\+cpp\item 
+Project-\/\+Library/src/controller/Controller.\+cpp\item 
+Project-\/\+Library/src/controller/Generic\+Commands.\+cpp\item 
+Project-\/\+Library/src/controller/User\+Commands.\+cpp\end{DoxyCompactItemize}

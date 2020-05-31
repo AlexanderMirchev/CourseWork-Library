@@ -3,13 +3,11 @@
 std::unique_ptr<Result> Controller::open(const std::string &filename)
 {
     this->bookService->openFile(filename);
-    this->openedFile = filename;
     return std::unique_ptr<Result>(new StringResult("File successfully opened."));
 }
 std::unique_ptr<Result> Controller::close()
 {
     this->bookService->closeFile();
-    this->openedFile = std::nullopt;
     return std::unique_ptr<Result>(new StringResult("File successfully closed."));
 }
 std::unique_ptr<Result> Controller::save() const

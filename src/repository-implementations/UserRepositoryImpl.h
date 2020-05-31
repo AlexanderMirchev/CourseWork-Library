@@ -5,8 +5,8 @@
 
 #include "../repositories/UserRepository.h"
 
-/*
-    Implementation of UserRepository
+/**
+ * Implementation of UserRepository
 */
 class UserRepositoryImpl : public UserRepository
 {
@@ -22,11 +22,8 @@ public:
     void addUser(const User &user) override;
     void removeUserByUsername(const std::string &username) override;
 
-    /*
-        Creates repository object with and sets the source file name to sourseFile.
-        Gets all users in file.
-
-        Throws BadFormatException (mostly should be preset so it does not throw)
+    /**
+     * May throw if sourcefile does not meet user requirements
     */
     UserRepositoryImpl(const std::string &sourceFile);
 };

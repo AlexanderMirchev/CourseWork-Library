@@ -3,23 +3,26 @@
 
 #include <exception>
 
-/*
-    Low-level exceptions in CRUD operations 
+/**
+ * Exceptions in CRUD operations
 */
 
-/*
-    Base repository exception
+/**
+ * Base repository exception
 */
 struct RepositoryException : public std::exception
 {
     virtual ~RepositoryException() = default;
 
+    /**
+     * Returns exception message
+    */
     virtual const char *what() const throw() = 0;
 };
 
-/*
-    Exception for when a new source is trying to 
-    be opened while there is already an open one.
+/**
+ * Exception for when a new source is trying to 
+ * be opened while there is already an open one.
 */
 struct SourceAlreadyExistsException : public RepositoryException
 {
@@ -29,9 +32,9 @@ struct SourceAlreadyExistsException : public RepositoryException
     }
 };
 
-/*
-    Exception for when a method requiring a source is 
-    invoked while no current source exists.
+/**
+ * Exception for when a method requiring a source is 
+ * invoked while no current source exists.
 */
 struct NoSourceException : public RepositoryException
 {
@@ -41,8 +44,8 @@ struct NoSourceException : public RepositoryException
     }
 };
 
-/*
-    Exception for when an error occurs while reading file.
+/**
+ * Exception for when an error occurs while reading file.
 */
 struct BadFormatException : public RepositoryException
 {
@@ -52,10 +55,10 @@ struct BadFormatException : public RepositoryException
     }
 };
 
-/*
-    Exception for when an entity is to be added to current 
-    list of entities, but does not satisfy an unique constraint.
-    (one of the fields should be unique)
+/**
+ * Exception for when an entity is to be added to current 
+ * list of entities, but does not satisfy an unique constraint.
+ * (one of the fields should be unique)
 */
 struct EntityAlreadyExistsException : public RepositoryException
 {
@@ -65,9 +68,9 @@ struct EntityAlreadyExistsException : public RepositoryException
     }
 };
 
-/*
-    Exception for when a change is to be made to a certain entity 
-    but no entites match the given search criteria.
+/**
+ * Exception for when a change is to be made to a certain entity 
+ * but no entites match the given search criteria.
 */
 struct EntityNotFoundException : public RepositoryException
 {

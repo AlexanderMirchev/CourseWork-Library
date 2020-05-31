@@ -1,0 +1,178 @@
+\hypertarget{classBookService}{}\section{Book\+Service Class Reference}
+\label{classBookService}\index{Book\+Service@{Book\+Service}}
+
+
+{\ttfamily \#include $<$Book\+Service.\+h$>$}
+
+
+
+Inheritance diagram for Book\+Service\+:
+% FIG 0
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classBookService_ad74916338cb66cfa8ae7dc24f60dec0e}{open\+File} (const std\+::string \&file\+Name)=0
+\item 
+virtual void \hyperlink{classBookService_af002fdac384bbaa9d6db2de419163c82}{close\+File} ()=0
+\item 
+virtual void \hyperlink{classBookService_ade2db5e76a84d7535d43e307d955d9c3}{save\+File} () const =0
+\item 
+virtual void \hyperlink{classBookService_aa98047f82d65f0514b1e7add838ecbe7}{save\+File\+As} (const std\+::string \&new\+File\+Name)=0
+\item 
+virtual const std\+::vector$<$ \hyperlink{classBook}{Book} $>$ \hyperlink{classBookService_a032755934b16f7c93078b54aaf2f6128}{get\+All\+Books} () const =0
+\item 
+virtual const std\+::optional$<$ \hyperlink{classBook}{Book} $>$ \hyperlink{classBookService_ad9da09e509b68ab1f7d93792206ce13c}{get\+Book\+Info} (const std\+::string \&I\+S\+BN) const =0
+\item 
+virtual const std\+::vector$<$ \hyperlink{classBook}{Book} $>$ \hyperlink{classBookService_a07bfc2c15f92d0b7dafba7464eff48e1}{find\+Books\+By} (const std\+::string \&option, const std\+::string \&option\+String) const =0
+\item 
+virtual const std\+::vector$<$ \hyperlink{classBook}{Book} $>$ \hyperlink{classBookService_a6336a7b95ae7a0d0e77782607d2a0dc3}{sort\+Books\+By} (const std\+::string \&option, const std\+::string \&order)=0
+\item 
+virtual const std\+::vector$<$ \hyperlink{classBook}{Book} $>$ \hyperlink{classBookService_a36b487f2828791a9956a491f5147471d}{sort\+Books\+By} (const std\+::string \&option)=0
+\item 
+virtual void \hyperlink{classBookService_a10744fb09191f0d2811d766aa1124931}{add\+Book} (const std\+::string \&I\+S\+BN, const std\+::string \&csv\+Properties)=0
+\item 
+virtual void \hyperlink{classBookService_ad5736bdaca83fcfeb262b6af0ec5967a}{remove\+Book} (const std\+::string \&I\+S\+BN)=0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Service interface for actions with books 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classBookService_a10744fb09191f0d2811d766aa1124931}\label{classBookService_a10744fb09191f0d2811d766aa1124931}} 
+\index{Book\+Service@{Book\+Service}!add\+Book@{add\+Book}}
+\index{add\+Book@{add\+Book}!Book\+Service@{Book\+Service}}
+\subsubsection{\texorpdfstring{add\+Book()}{addBook()}}
+{\footnotesize\ttfamily virtual void Book\+Service\+::add\+Book (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{I\+S\+BN,  }\item[{const std\+::string \&}]{csv\+Properties }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Adds a book generated from csv\+Properties with unique value I\+S\+BN
+
+Throws \hyperlink{structNoOpenFileException}{No\+Open\+File\+Exception} if no file is open. Throws \hyperlink{classAlreadyExistsException}{Already\+Exists\+Exception} 
+
+Implemented in \hyperlink{classBookServiceImpl_a990c823f559356c2a6290b9acc9eeb91}{Book\+Service\+Impl}.
+
+\mbox{\Hypertarget{classBookService_af002fdac384bbaa9d6db2de419163c82}\label{classBookService_af002fdac384bbaa9d6db2de419163c82}} 
+\index{Book\+Service@{Book\+Service}!close\+File@{close\+File}}
+\index{close\+File@{close\+File}!Book\+Service@{Book\+Service}}
+\subsubsection{\texorpdfstring{close\+File()}{closeFile()}}
+{\footnotesize\ttfamily virtual void Book\+Service\+::close\+File (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Closes the file without saving.
+
+Throws \hyperlink{structNoOpenFileException}{No\+Open\+File\+Exception} 
+
+Implemented in \hyperlink{classBookServiceImpl_abf8207579fffae1a2bd1003b8684d994}{Book\+Service\+Impl}.
+
+\mbox{\Hypertarget{classBookService_a07bfc2c15f92d0b7dafba7464eff48e1}\label{classBookService_a07bfc2c15f92d0b7dafba7464eff48e1}} 
+\index{Book\+Service@{Book\+Service}!find\+Books\+By@{find\+Books\+By}}
+\index{find\+Books\+By@{find\+Books\+By}!Book\+Service@{Book\+Service}}
+\subsubsection{\texorpdfstring{find\+Books\+By()}{findBooksBy()}}
+{\footnotesize\ttfamily virtual const std\+::vector$<$\hyperlink{classBook}{Book}$>$ Book\+Service\+::find\+Books\+By (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{option,  }\item[{const std\+::string \&}]{option\+String }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Returns all books that have option\+String as their option value Supported options\+: title, author, tag
+
+Throws \hyperlink{structNoOpenFileException}{No\+Open\+File\+Exception} if no file is open. Throws Invalid\+Option\+Exception if option is not a valid field. 
+
+Implemented in \hyperlink{classBookServiceImpl_a650bd2918bbacfd628e1d399a1c82b48}{Book\+Service\+Impl}.
+
+\mbox{\Hypertarget{classBookService_a032755934b16f7c93078b54aaf2f6128}\label{classBookService_a032755934b16f7c93078b54aaf2f6128}} 
+\index{Book\+Service@{Book\+Service}!get\+All\+Books@{get\+All\+Books}}
+\index{get\+All\+Books@{get\+All\+Books}!Book\+Service@{Book\+Service}}
+\subsubsection{\texorpdfstring{get\+All\+Books()}{getAllBooks()}}
+{\footnotesize\ttfamily virtual const std\+::vector$<$\hyperlink{classBook}{Book}$>$ Book\+Service\+::get\+All\+Books (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Returns all books.
+
+Throws \hyperlink{structNoOpenFileException}{No\+Open\+File\+Exception} if no file is open. 
+
+Implemented in \hyperlink{classBookServiceImpl_a7ef55efcff6a50977de2a97ce156838f}{Book\+Service\+Impl}.
+
+\mbox{\Hypertarget{classBookService_ad9da09e509b68ab1f7d93792206ce13c}\label{classBookService_ad9da09e509b68ab1f7d93792206ce13c}} 
+\index{Book\+Service@{Book\+Service}!get\+Book\+Info@{get\+Book\+Info}}
+\index{get\+Book\+Info@{get\+Book\+Info}!Book\+Service@{Book\+Service}}
+\subsubsection{\texorpdfstring{get\+Book\+Info()}{getBookInfo()}}
+{\footnotesize\ttfamily virtual const std\+::optional$<$\hyperlink{classBook}{Book}$>$ Book\+Service\+::get\+Book\+Info (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{I\+S\+BN }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Returns optional value of book by I\+S\+BN.
+
+Throws \hyperlink{structNoOpenFileException}{No\+Open\+File\+Exception} if no file is open. 
+
+Implemented in \hyperlink{classBookServiceImpl_adaf138469f4de2806de2a16aa92b288a}{Book\+Service\+Impl}.
+
+\mbox{\Hypertarget{classBookService_ad74916338cb66cfa8ae7dc24f60dec0e}\label{classBookService_ad74916338cb66cfa8ae7dc24f60dec0e}} 
+\index{Book\+Service@{Book\+Service}!open\+File@{open\+File}}
+\index{open\+File@{open\+File}!Book\+Service@{Book\+Service}}
+\subsubsection{\texorpdfstring{open\+File()}{openFile()}}
+{\footnotesize\ttfamily virtual void Book\+Service\+::open\+File (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Opens file with filename and loads book data
+
+Throws File\+Already\+Opened\+Exception Throws \hyperlink{structUnreadableFileException}{Unreadable\+File\+Exception} 
+
+Implemented in \hyperlink{classBookServiceImpl_ab95aca2128c3abe9826a54ba4efff14b}{Book\+Service\+Impl}.
+
+\mbox{\Hypertarget{classBookService_ad5736bdaca83fcfeb262b6af0ec5967a}\label{classBookService_ad5736bdaca83fcfeb262b6af0ec5967a}} 
+\index{Book\+Service@{Book\+Service}!remove\+Book@{remove\+Book}}
+\index{remove\+Book@{remove\+Book}!Book\+Service@{Book\+Service}}
+\subsubsection{\texorpdfstring{remove\+Book()}{removeBook()}}
+{\footnotesize\ttfamily virtual void Book\+Service\+::remove\+Book (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{I\+S\+BN }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Removes a book by I\+S\+BN
+
+Throws \hyperlink{structNoOpenFileException}{No\+Open\+File\+Exception} if no file is open. Throws \hyperlink{classNotFoundException}{Not\+Found\+Exception} 
+
+Implemented in \hyperlink{classBookServiceImpl_ad0673fa9012b0454b0cbed190bcdc6e4}{Book\+Service\+Impl}.
+
+\mbox{\Hypertarget{classBookService_ade2db5e76a84d7535d43e307d955d9c3}\label{classBookService_ade2db5e76a84d7535d43e307d955d9c3}} 
+\index{Book\+Service@{Book\+Service}!save\+File@{save\+File}}
+\index{save\+File@{save\+File}!Book\+Service@{Book\+Service}}
+\subsubsection{\texorpdfstring{save\+File()}{saveFile()}}
+{\footnotesize\ttfamily virtual void Book\+Service\+::save\+File (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Writes current data to current opened file.
+
+Throws \hyperlink{structNoOpenFileException}{No\+Open\+File\+Exception} if no file is open. 
+
+Implemented in \hyperlink{classBookServiceImpl_af6b0c5e77b20b1baf2e7be7630fb56b8}{Book\+Service\+Impl}.
+
+\mbox{\Hypertarget{classBookService_aa98047f82d65f0514b1e7add838ecbe7}\label{classBookService_aa98047f82d65f0514b1e7add838ecbe7}} 
+\index{Book\+Service@{Book\+Service}!save\+File\+As@{save\+File\+As}}
+\index{save\+File\+As@{save\+File\+As}!Book\+Service@{Book\+Service}}
+\subsubsection{\texorpdfstring{save\+File\+As()}{saveFileAs()}}
+{\footnotesize\ttfamily virtual void Book\+Service\+::save\+File\+As (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{new\+File\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Writes current data to new file and sets it as current opened
+
+Throws \hyperlink{structNoOpenFileException}{No\+Open\+File\+Exception} 
+
+Implemented in \hyperlink{classBookServiceImpl_a8d7fa1e7a5f64a7716422bd18e79c35f}{Book\+Service\+Impl}.
+
+\mbox{\Hypertarget{classBookService_a6336a7b95ae7a0d0e77782607d2a0dc3}\label{classBookService_a6336a7b95ae7a0d0e77782607d2a0dc3}} 
+\index{Book\+Service@{Book\+Service}!sort\+Books\+By@{sort\+Books\+By}}
+\index{sort\+Books\+By@{sort\+Books\+By}!Book\+Service@{Book\+Service}}
+\subsubsection{\texorpdfstring{sort\+Books\+By()}{sortBooksBy()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual const std\+::vector$<$\hyperlink{classBook}{Book}$>$ Book\+Service\+::sort\+Books\+By (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{option,  }\item[{const std\+::string \&}]{order }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Returns all books sorted by option in ascending/descending order Supported options\+: title, author, year, rating
+
+Throws \hyperlink{structNoOpenFileException}{No\+Open\+File\+Exception} if no file is open. Throws Invalid\+Option\+Exception if option is not a valid field. 
+
+Implemented in \hyperlink{classBookServiceImpl_a597b769829c06f73168e08b900571cc5}{Book\+Service\+Impl}.
+
+\mbox{\Hypertarget{classBookService_a36b487f2828791a9956a491f5147471d}\label{classBookService_a36b487f2828791a9956a491f5147471d}} 
+\index{Book\+Service@{Book\+Service}!sort\+Books\+By@{sort\+Books\+By}}
+\index{sort\+Books\+By@{sort\+Books\+By}!Book\+Service@{Book\+Service}}
+\subsubsection{\texorpdfstring{sort\+Books\+By()}{sortBooksBy()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual const std\+::vector$<$\hyperlink{classBook}{Book}$>$ Book\+Service\+::sort\+Books\+By (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{option }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Returns all books sorted by option in ascending order Supported options\+: title, author, year, rating
+
+Throws \hyperlink{structNoOpenFileException}{No\+Open\+File\+Exception} if no file is open. Throws Invalid\+Option\+Exception if option is not a valid field. 
+
+Implemented in \hyperlink{classBookServiceImpl_a95290c709cbb9fa56e3e2ca2753096d8}{Book\+Service\+Impl}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Project-\/\+Library/src/services/Book\+Service.\+h\end{DoxyCompactItemize}

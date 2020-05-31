@@ -5,8 +5,8 @@
 
 #include "../repositories/BookRepository.h"
 
-/*
-    Implementation of BookRepository
+/**
+ * Implementation of BookRepository
 */
 class BookRepositoryImpl : public BookRepository
 {
@@ -26,9 +26,6 @@ public:
         const std::string &ISBN, const std::string &propertiesInCSV) override;
     void removeBook(const std::string &ISBN) override;
 
-    /*
-        Creates repository class with no input/output source
-    */
     BookRepositoryImpl() {}
 };
 #endif

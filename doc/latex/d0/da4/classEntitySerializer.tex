@@ -1,0 +1,57 @@
+\hypertarget{classEntitySerializer}{}\section{Entity\+Serializer$<$ T $>$ Class Template Reference}
+\label{classEntitySerializer}\index{Entity\+Serializer$<$ T $>$@{Entity\+Serializer$<$ T $>$}}
+
+
+{\ttfamily \#include $<$Entity\+Serializer.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classEntitySerializer_aaccc5e208ba4931d413bc2d6ad83a97c}{Entity\+Serializer} (const std\+::string \&filename)
+\item 
+const std\+::vector$<$ T $>$ \hyperlink{classEntitySerializer_a4ca6b46341d27711980e48914efde897}{read\+All\+Entities} () const
+\item 
+void \hyperlink{classEntitySerializer_a763ccba2e88a71f6768a8d07866574b1}{write\+All\+Entities} (const std\+::vector$<$ T $>$ \&entities) const
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class T$>$\newline
+class Entity\+Serializer$<$ T $>$}
+
+Template class for serialization/deserialization of objects from files 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classEntitySerializer_aaccc5e208ba4931d413bc2d6ad83a97c}\label{classEntitySerializer_aaccc5e208ba4931d413bc2d6ad83a97c}} 
+\index{Entity\+Serializer@{Entity\+Serializer}!Entity\+Serializer@{Entity\+Serializer}}
+\index{Entity\+Serializer@{Entity\+Serializer}!Entity\+Serializer@{Entity\+Serializer}}
+\subsubsection{\texorpdfstring{Entity\+Serializer()}{EntitySerializer()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classEntitySerializer}{Entity\+Serializer}$<$ T $>$\+::\hyperlink{classEntitySerializer}{Entity\+Serializer} (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor with name of the file to be worked with
+
+Assertion for template class to be of type \hyperlink{classSerializable}{Serializable} 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classEntitySerializer_a4ca6b46341d27711980e48914efde897}\label{classEntitySerializer_a4ca6b46341d27711980e48914efde897}} 
+\index{Entity\+Serializer@{Entity\+Serializer}!read\+All\+Entities@{read\+All\+Entities}}
+\index{read\+All\+Entities@{read\+All\+Entities}!Entity\+Serializer@{Entity\+Serializer}}
+\subsubsection{\texorpdfstring{read\+All\+Entities()}{readAllEntities()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+const std\+::vector$<$T$>$ \hyperlink{classEntitySerializer}{Entity\+Serializer}$<$ T $>$\+::read\+All\+Entities (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns a vector of entities read from file
+
+Throws \hyperlink{structBadFormatException}{Bad\+Format\+Exception} if the format of the file does not match the entity \mbox{\Hypertarget{classEntitySerializer_a763ccba2e88a71f6768a8d07866574b1}\label{classEntitySerializer_a763ccba2e88a71f6768a8d07866574b1}} 
+\index{Entity\+Serializer@{Entity\+Serializer}!write\+All\+Entities@{write\+All\+Entities}}
+\index{write\+All\+Entities@{write\+All\+Entities}!Entity\+Serializer@{Entity\+Serializer}}
+\subsubsection{\texorpdfstring{write\+All\+Entities()}{writeAllEntities()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+void \hyperlink{classEntitySerializer}{Entity\+Serializer}$<$ T $>$\+::write\+All\+Entities (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{entities }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Saves all entities to the given file (erases everything in file written before that) 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Project-\/\+Library/src/repository-\/implementations/Entity\+Serializer.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,27 @@
+\hypertarget{classAlreadyExistsException}{}\section{Already\+Exists\+Exception Class Reference}
+\label{classAlreadyExistsException}\index{Already\+Exists\+Exception@{Already\+Exists\+Exception}}
+
+
+Inheritance diagram for Already\+Exists\+Exception\+:
+% FIG 0
+
+
+Collaboration diagram for Already\+Exists\+Exception\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classAlreadyExistsException_ac5e3c148e8f71bd03a0a7dbf08562026}\label{classAlreadyExistsException_ac5e3c148e8f71bd03a0a7dbf08562026}} 
+{\bfseries Already\+Exists\+Exception} (const std\+::string \&type)
+\item 
+\mbox{\Hypertarget{classAlreadyExistsException_a89d4596ddc6609a3e096e8be6dcbefa3}\label{classAlreadyExistsException_a89d4596ddc6609a3e096e8be6dcbefa3}} 
+const char $\ast$ {\bfseries what} () const noexcept override
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Exception for when the user tries to create an object but it does not comply with an unique constraint. Has type identifier. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Project-\/\+Library/src/services/Service\+Exceptions.\+cpp\end{DoxyCompactItemize}

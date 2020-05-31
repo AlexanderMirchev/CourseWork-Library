@@ -1,0 +1,60 @@
+\hypertarget{classSerializable}{}\section{Serializable Class Reference}
+\label{classSerializable}\index{Serializable@{Serializable}}
+
+
+{\ttfamily \#include $<$Serializable.\+h$>$}
+
+
+
+Inheritance diagram for Serializable\+:
+% FIG 0
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual const std\+::string \hyperlink{classSerializable_ab9cd1db8311603ce4250478c3dd3eb81}{obj\+To\+String} () const =0
+\item 
+virtual void \hyperlink{classSerializable_abaec34cf73821a3234cf4daea584eab3}{string\+To\+Object} (const std\+::string \&)=0
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static const std\+::vector$<$ std\+::string $>$ \hyperlink{classSerializable_acc2acbf868ec689695498fbb5c863cdb}{separate\+C\+S\+Vs} (const std\+::string \&string)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+An abstract class for entities that can be converted to string and can be constructed from a string. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classSerializable_ab9cd1db8311603ce4250478c3dd3eb81}\label{classSerializable_ab9cd1db8311603ce4250478c3dd3eb81}} 
+\index{Serializable@{Serializable}!obj\+To\+String@{obj\+To\+String}}
+\index{obj\+To\+String@{obj\+To\+String}!Serializable@{Serializable}}
+\subsubsection{\texorpdfstring{obj\+To\+String()}{objToString()}}
+{\footnotesize\ttfamily virtual const std\+::string Serializable\+::obj\+To\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Object must contain a function that converts it to a csv string 
+
+Implemented in \hyperlink{classBook_a693f08d322fa1395e5bc1f864c380b66}{Book}, and \hyperlink{classUser_a941a44ea8fc61a10d918566e2afc7cbc}{User}.
+
+\mbox{\Hypertarget{classSerializable_acc2acbf868ec689695498fbb5c863cdb}\label{classSerializable_acc2acbf868ec689695498fbb5c863cdb}} 
+\index{Serializable@{Serializable}!separate\+C\+S\+Vs@{separate\+C\+S\+Vs}}
+\index{separate\+C\+S\+Vs@{separate\+C\+S\+Vs}!Serializable@{Serializable}}
+\subsubsection{\texorpdfstring{separate\+C\+S\+Vs()}{separateCSVs()}}
+{\footnotesize\ttfamily const std\+::vector$<$ std\+::string $>$ Serializable\+::separate\+C\+S\+Vs (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{string }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+Helper function that converts a C\+SV string to vector of strings \mbox{\Hypertarget{classSerializable_abaec34cf73821a3234cf4daea584eab3}\label{classSerializable_abaec34cf73821a3234cf4daea584eab3}} 
+\index{Serializable@{Serializable}!string\+To\+Object@{string\+To\+Object}}
+\index{string\+To\+Object@{string\+To\+Object}!Serializable@{Serializable}}
+\subsubsection{\texorpdfstring{string\+To\+Object()}{stringToObject()}}
+{\footnotesize\ttfamily virtual void Serializable\+::string\+To\+Object (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Object must contain a function that creates object from a csv string (result is absorbed by this) throws \hyperlink{structBadFormatException}{Bad\+Format\+Exception} if the object has limitations in terms of number of values 
+
+Implemented in \hyperlink{classBook_a260ec829661a21befcf11a34e6c2aeca}{Book}, and \hyperlink{classUser_a45730ce65190e6bb9734b5d797484bf9}{User}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Project-\/\+Library/src/entities/Serializable.\+h\item 
+Project-\/\+Library/src/entities/Serializable.\+cpp\end{DoxyCompactItemize}

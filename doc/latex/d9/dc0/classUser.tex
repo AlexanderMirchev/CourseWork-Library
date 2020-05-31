@@ -1,0 +1,88 @@
+\hypertarget{classUser}{}\section{User Class Reference}
+\label{classUser}\index{User@{User}}
+
+
+{\ttfamily \#include $<$User.\+h$>$}
+
+
+
+Inheritance diagram for User\+:
+% FIG 0
+
+
+Collaboration diagram for User\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+const std\+::string \hyperlink{classUser_a941a44ea8fc61a10d918566e2afc7cbc}{obj\+To\+String} () const override
+\item 
+void \hyperlink{classUser_a45730ce65190e6bb9734b5d797484bf9}{string\+To\+Object} (const std\+::string \&) override
+\item 
+bool \hyperlink{classUser_a149f362a527d2d6024b15bd99e075f40}{is\+Admin} () const
+\item 
+\mbox{\Hypertarget{classUser_a0bdca63ed72fc8ffcee690a0119c2104}\label{classUser_a0bdca63ed72fc8ffcee690a0119c2104}} 
+const std\+::string \& {\bfseries get\+Username} () const
+\item 
+bool \hyperlink{classUser_abc59adb4249ad4e6d521d118e6dc96e1}{authenticate} (const std\+::string \&password) const
+\item 
+\mbox{\Hypertarget{classUser_a7b0371ee04e466f62615373e5ba9d6a2}\label{classUser_a7b0371ee04e466f62615373e5ba9d6a2}} 
+{\bfseries User} (const std\+::string \&, const std\+::string \&, const bool)
+\item 
+\mbox{\Hypertarget{classUser_a3c20678fb9c65cdb1f27462a0d476303}\label{classUser_a3c20678fb9c65cdb1f27462a0d476303}} 
+{\bfseries User} (const \hyperlink{classUser}{User} \&)=default
+\item 
+\mbox{\Hypertarget{classUser_ab5d8fb981c60a7e335abfb12c91af27d}\label{classUser_ab5d8fb981c60a7e335abfb12c91af27d}} 
+\hyperlink{classUser}{User} \& {\bfseries operator=} (const \hyperlink{classUser}{User} \&)=default
+\item 
+\mbox{\Hypertarget{classUser_a1609b007f5a8a12c08fbf13c72714dbb}\label{classUser_a1609b007f5a8a12c08fbf13c72714dbb}} 
+{\bfseries User} (\hyperlink{classUser}{User} \&\&)
+\item 
+\mbox{\Hypertarget{classUser_a5f5dcae61b80f2a1a389fc12d990f0f8}\label{classUser_a5f5dcae61b80f2a1a389fc12d990f0f8}} 
+\hyperlink{classUser}{User} \& {\bfseries operator=} (\hyperlink{classUser}{User} \&\&)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+An entity class for a user 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classUser_abc59adb4249ad4e6d521d118e6dc96e1}\label{classUser_abc59adb4249ad4e6d521d118e6dc96e1}} 
+\index{User@{User}!authenticate@{authenticate}}
+\index{authenticate@{authenticate}!User@{User}}
+\subsubsection{\texorpdfstring{authenticate()}{authenticate()}}
+{\footnotesize\ttfamily bool User\+::authenticate (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{password }\end{DoxyParamCaption}) const}
+
+Boolean value whether param password is the same as user password \mbox{\Hypertarget{classUser_a149f362a527d2d6024b15bd99e075f40}\label{classUser_a149f362a527d2d6024b15bd99e075f40}} 
+\index{User@{User}!is\+Admin@{is\+Admin}}
+\index{is\+Admin@{is\+Admin}!User@{User}}
+\subsubsection{\texorpdfstring{is\+Admin()}{isAdmin()}}
+{\footnotesize\ttfamily bool User\+::is\+Admin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Boolean value if user has admin rights \mbox{\Hypertarget{classUser_a941a44ea8fc61a10d918566e2afc7cbc}\label{classUser_a941a44ea8fc61a10d918566e2afc7cbc}} 
+\index{User@{User}!obj\+To\+String@{obj\+To\+String}}
+\index{obj\+To\+String@{obj\+To\+String}!User@{User}}
+\subsubsection{\texorpdfstring{obj\+To\+String()}{objToString()}}
+{\footnotesize\ttfamily const std\+::string User\+::obj\+To\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Object must contain a function that converts it to a csv string 
+
+Implements \hyperlink{classSerializable_ab9cd1db8311603ce4250478c3dd3eb81}{Serializable}.
+
+\mbox{\Hypertarget{classUser_a45730ce65190e6bb9734b5d797484bf9}\label{classUser_a45730ce65190e6bb9734b5d797484bf9}} 
+\index{User@{User}!string\+To\+Object@{string\+To\+Object}}
+\index{string\+To\+Object@{string\+To\+Object}!User@{User}}
+\subsubsection{\texorpdfstring{string\+To\+Object()}{stringToObject()}}
+{\footnotesize\ttfamily void User\+::string\+To\+Object (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Object must contain a function that creates object from a csv string (result is absorbed by this) throws \hyperlink{structBadFormatException}{Bad\+Format\+Exception} if the object has limitations in terms of number of values 
+
+Implements \hyperlink{classSerializable_abaec34cf73821a3234cf4daea584eab3}{Serializable}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Project-\/\+Library/src/entities/User.\+h\item 
+Project-\/\+Library/src/entities/User.\+cpp\end{DoxyCompactItemize}

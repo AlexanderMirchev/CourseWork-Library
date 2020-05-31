@@ -24,7 +24,7 @@ const std::string Book::objToString() const
 void Book::stringToObject(const std::string &string)
 {
     std::vector<std::string> values = separateCSVs(string);
-    const size_t minimalRequiredSize = 9;
+    const size_t minimalRequiredSize = 7;
     if (values.size() < minimalRequiredSize)
     {
         throw BadFormatException();
@@ -55,10 +55,15 @@ void Book::print() const
     std::cout << "\nGenre: " << this->genre;
     std::cout << "\nDescription: " << this->description;
     std::cout << "\nTags: ";
-    for (const std::string &tag : this->tags)
-    {
-        std::cout << tag << " ";
-    }
+    std::vector<std::string>::const_iterator iter;
+        for (iter = this->tags.begin(); iter < this->tags.end(); iter++)
+        {
+            std::cout << *iter;
+            if (iter+1 != this->tags.end())
+            {
+                std::cout << ", ";
+            }
+        }
     std::cout << "\nRating: " << this->rating;
     std::cout << "\nISBN: " << this->ISBN << std::endl;
 }

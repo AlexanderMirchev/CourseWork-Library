@@ -1,0 +1,9 @@
+Jelezniq Svetilnik,Dimitar Talev,Novel,A book about the bulgarian fight for freedom,1880,novel,bulgarian,classic,10.000000,2224
+Razkazi,Elin Pelin,Short stories,Razkazi na Elin Pelin,1910,short stories,bulgarian,classic,village,10.000000,1025
+Dyado Gorio,Onore dyo Balzak,Novel,A book about french people,1852,novel,french,classic,8,1026
+Paragraph 22,Joseph Heller,Novel,A book about war,1950,novel,english,classic,war,9,1027
+Elon Musk Biography,Ashlee Vance,Biography,A book about Elon Musk,2010,biography,modern,5,1028
+Book Thief,Marcus Zuessac,Novel,A book about jew life in the second world war,1980,novel,german,war,6,1029
+Steve Jobs Biography,Walter Isaacstone,Biography,A book about Steve Jobs,2008,biography,modern,4,1030
+Pod manastirskata loza,Elin Pelin,Short stories,Razkazi na Elin Pelin,1910,short stories,bulgarian,classic,village,9,1031
+bad,bad,bad,bad,bad,bad,bad,bad

@@ -1,100 +1,45 @@
-#ifndef RESULTWRAPPERS_H
-#define RESULTWRAPPERS_H
+#include "ResultWrappers.h"
 
 #include <iostream>
-#include <memory>
-#include "../entities/Book.h"
-#include "../entities/User.h"
 
-/*
-    Classes expressing printable results(wrappers on entities/standard classes)
-*/
+BookResult::BookResult(const Book &book) : book{book} {}
 
-/*
-    Displayable Result interface
-*/
-class Result
+void BookResult::display() const
 {
-public:
-    virtual ~Result() = default;
+    this->book.print();
+}
 
-    virtual void display() const = 0;
-};
+BookListResult::BookListResult(const std::vector<Book> &bookList)
+    : bookList{bookList} {}
 
-/*
-    Wrapper for a single book
-*/
-class BookResult : public Result
+BookListResult::BookListResult(const std::vector<Book> &bookList,
+                               const std::string &option)
+    : bookList{bookList}, option{option} {}
+
+void BookListResult::display() const
 {
-private:
-    Book book;
-
-public:
-    BookResult(const Book &book) : book{book} {}
-
-    void display() const override
+    for (const Book &book : this->bookList)
     {
-        this->book.print();
+        book.print(option);
     }
-};
+}
 
-/*
-    Wrapper for list of books
-*/
-class BookListResult : public Result
+StringResult::StringResult(const std::string &string) : string{string} {}
+
+void StringResult::display() const
 {
-private:
-    std::vector<Book> bookList;
-    std::string option;
+    std::cout << this->string << std::endl;
+}
 
-public:
-    BookListResult(const std::vector<Book> &bookList) : bookList{bookList} {}
-    BookListResult(const std::vector<Book> &bookList,
-                   const std::string &option)
-        : bookList{bookList}, option{option} {}
+UserLoginResult::UserLoginResult(const User &user) : user{user} {}
 
-    void display() const override
-    {
-        for (const Book &book : this->bookList)
-        {
-            book.print(option);
-        }
-    }
-};
-
-/*
-    Wrapper for a string message
-*/
-class StringResult : public Result
+void UserLoginResult::display() const
 {
-private:
-    std::string string;
+    std::cout << "You are logged in as "
+              << user.getUsername() << std::endl;
+}
 
-public:
-    StringResult(const std::string &string) : string{string} {}
-
-    void display() const override
-    {
-        std::cout << this->string << std::endl;
-    }
-};
-
-class UserLoginResult : public Result
+const User &UserLoginResult::getUser() const
 {
-private:
-    User user;
-
-public:
-    UserLoginResult(const User &user) : user{user} {}
-
-    void display() const override
-    {
-        std::cout << "You are logged in as "
-                  << user.getUsername() << std::endl;
-    }
-    const User &getUser() const
-    {
-        return this->user;
-    }
-};
-#endif
+    return this->user;
+}

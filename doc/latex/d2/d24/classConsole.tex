@@ -1,0 +1,39 @@
+\hypertarget{classConsole}{}\section{Console Class Reference}
+\label{classConsole}\index{Console@{Console}}
+
+
+{\ttfamily \#include $<$Console.\+h$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static const std\+::vector$<$ std\+::string $>$ \hyperlink{classConsole_aec315361f281bda286e0c5289bd31bd4}{read\+Input} (const std\+::string \&line)
+\item 
+static void \hyperlink{classConsole_a0948b0ddbf96bed87afe7083f242f789}{display} (const std\+::unique\+\_\+ptr$<$ \hyperlink{classResult}{Result} $>$ \&result)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class for interraction with console 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classConsole_a0948b0ddbf96bed87afe7083f242f789}\label{classConsole_a0948b0ddbf96bed87afe7083f242f789}} 
+\index{Console@{Console}!display@{display}}
+\index{display@{display}!Console@{Console}}
+\subsubsection{\texorpdfstring{display()}{display()}}
+{\footnotesize\ttfamily void Console\+::display (\begin{DoxyParamCaption}\item[{const std\+::unique\+\_\+ptr$<$ \hyperlink{classResult}{Result} $>$ \&}]{result }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Displays the value of the result \mbox{\Hypertarget{classConsole_aec315361f281bda286e0c5289bd31bd4}\label{classConsole_aec315361f281bda286e0c5289bd31bd4}} 
+\index{Console@{Console}!read\+Input@{read\+Input}}
+\index{read\+Input@{read\+Input}!Console@{Console}}
+\subsubsection{\texorpdfstring{read\+Input()}{readInput()}}
+{\footnotesize\ttfamily const std\+::vector$<$ std\+::string $>$ Console\+::read\+Input (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{line }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Separates line string into separate words with specific rules\+: if \textquotesingle{} " \textquotesingle{} is present, a new word will be added only after a second one is seen else on every space a new word is added to list
+
+Example\+: books find author \char`\"{}\+Ivan Vazov\char`\"{} -\/ 4 words books find author Ivan Vazov -\/ 5 words 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Project-\/\+Library/src/user-\/interface/Console.\+h\item 
+Project-\/\+Library/src/user-\/interface/Console.\+cpp\end{DoxyCompactItemize}

@@ -7,12 +7,13 @@
 #include "service-impl/UserServiceImpl.h"
 
 #include "user-interface/Console.h"
+#include <iostream>
 
 Session::Session()
     : controller{std::unique_ptr<UserService>(
                      new UserServiceImpl(
                          std::unique_ptr<UserRepository>(
-                             new UserRepositoryImpl("data.txt")))),
+                             new UserRepositoryImpl("UserData.txt")))),
                  std::unique_ptr<BookService>(
                      new BookServiceImpl(
                          std::unique_ptr<BookRepository>(

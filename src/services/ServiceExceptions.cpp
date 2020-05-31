@@ -1,13 +1,13 @@
 #include <exception>
 #include <string>
 
-/*
-    Service level exceptions to be thrown by the service layer and
-    provided to user.
+/**
+ * Service level exceptions to be thrown by 
+ * the service layer and provided to user.
 */
 
-/*
-    Base service exception
+/**
+ * Base service exception
 */
 struct ServiceException : public std::exception
 {
@@ -16,9 +16,9 @@ struct ServiceException : public std::exception
     virtual const char *what() const throw() = 0;
 };
 
-/*
-    NoOpenFileException for when the user tries to complete operation
-    requiring an open file but none is current
+/**
+ * Exception for when the user tries to complete operation
+ * requiring an open file but none is current
 */
 struct NoOpenFileException : public ServiceException
 {
@@ -28,9 +28,9 @@ struct NoOpenFileException : public ServiceException
     }
 };
 
-/*
-    AlreadyOpenException for when the user tries to open a file while
-    there is already one open
+/**
+ * Exception for when the user tries to open a file while 
+ * there is already one open
 */
 struct AlreadyOpenException : public ServiceException
 {
@@ -40,9 +40,9 @@ struct AlreadyOpenException : public ServiceException
     }
 };
 
-/*
-    UnreadableFileException for when the user requests read operation
-    from a file and the system is unable to complete it
+/**
+ * Exception for when the user requests read operation 
+ * from a file and the system is unable to complete it
 */
 struct UnreadableFileException : public ServiceException
 {
@@ -53,10 +53,9 @@ struct UnreadableFileException : public ServiceException
     }
 };
 
-/*
-    AlreadyExistsException for when the user tries to create an object
-    but it does not comply with an unique constraint.
-    Has type identifier.
+/**
+ * Exception for when the user tries to create an object
+ * but it does not comply with an unique constraint. Has type identifier.
 */
 class AlreadyExistsException : public ServiceException
 {
@@ -76,10 +75,9 @@ public:
     }
 };
 
-/*
-    NotFoundException for when a non-read operation is requested for a single
-    entity.
-    Has type identifier.
+/**
+ * Exception for when a non-read operation is requested for a single entity.
+ * Has type identifier.
 */
 class NotFoundException : public ServiceException
 {
@@ -99,11 +97,10 @@ public:
     }
 };
 
-/*
-    InvalidParamException for when an identifier is passed through
-    the command parameters and it does not match the function's
-    specification.
-    Has type identifier.
+/**
+ * Exception for when an identifier is passed through the command 
+ * parameters and it does not match the function's specification. 
+ * Has type identifier.
 */
 class InvalidParamException : public ServiceException
 {

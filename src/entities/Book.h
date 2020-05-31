@@ -6,6 +6,9 @@
 
 #include "Serializable.h"
 
+/**
+ * An entity class for a book
+*/
 class Book : public Serializable
 {
 
@@ -20,26 +23,19 @@ private:
     std::string ISBN;
 
 public:
-    /*
-        See Serializable
-    */
     const std::string objToString() const override;
     void stringToObject(const std::string &) override;
 
-    /*
-        Prints book detailed
+    /**
+     * Detailed output for book
     */
     void print() const;
-    /*
-        Outputs to console
-
-        param string - the field to be printed
+    /**
+     * One line output with default output of author title and ISBN
+     * Depending on string could add year/tag/rating
     */
     void print(const std::string &) const;
 
-    /*
-        Getters
-    */
     const std::string &getTitle() const;
     const std::string &getAuthor() const;
     const int &getYear() const;
@@ -51,17 +47,9 @@ public:
          const std::string &, const int, const std::vector<std::string> &,
          const double, const std::string &);
     Book();
-
-    /*
-        Default memory management
-    */
     Book(const Book &) = default;
     ~Book() = default;
     Book &operator=(const Book &) = default;
-
-    /*
-        Move operators
-    */
     Book(Book &&);
     Book &operator=(Book &&);
 };

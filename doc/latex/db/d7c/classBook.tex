@@ -1,0 +1,103 @@
+\hypertarget{classBook}{}\section{Book Class Reference}
+\label{classBook}\index{Book@{Book}}
+
+
+{\ttfamily \#include $<$Book.\+h$>$}
+
+
+
+Inheritance diagram for Book\+:
+% FIG 0
+
+
+Collaboration diagram for Book\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+const std\+::string \hyperlink{classBook_a693f08d322fa1395e5bc1f864c380b66}{obj\+To\+String} () const override
+\item 
+void \hyperlink{classBook_a260ec829661a21befcf11a34e6c2aeca}{string\+To\+Object} (const std\+::string \&) override
+\item 
+void \hyperlink{classBook_af46441a304bd9d514fc9fb0cae3536cc}{print} () const
+\item 
+void \hyperlink{classBook_adf345a9bf2403f9d1d56aa10b2c26d3e}{print} (const std\+::string \&) const
+\item 
+\mbox{\Hypertarget{classBook_ad656beaa1c9ebb225792097ffbed6860}\label{classBook_ad656beaa1c9ebb225792097ffbed6860}} 
+const std\+::string \& {\bfseries get\+Title} () const
+\item 
+\mbox{\Hypertarget{classBook_ad5dda425ee6e26e530f19caf97f880c2}\label{classBook_ad5dda425ee6e26e530f19caf97f880c2}} 
+const std\+::string \& {\bfseries get\+Author} () const
+\item 
+\mbox{\Hypertarget{classBook_a8a44e7a9195ed0fa58b8ba21474edbe3}\label{classBook_a8a44e7a9195ed0fa58b8ba21474edbe3}} 
+const int \& {\bfseries get\+Year} () const
+\item 
+\mbox{\Hypertarget{classBook_a5758e7e16c6f1373d6518caa01a9dda4}\label{classBook_a5758e7e16c6f1373d6518caa01a9dda4}} 
+const std\+::vector$<$ std\+::string $>$ \& {\bfseries get\+Tags} () const
+\item 
+\mbox{\Hypertarget{classBook_ad9e02792e52aa91a81b746ad87756576}\label{classBook_ad9e02792e52aa91a81b746ad87756576}} 
+const double \& {\bfseries get\+Rating} () const
+\item 
+\mbox{\Hypertarget{classBook_a2a249a303bbdcd732a4b635c86a1b43a}\label{classBook_a2a249a303bbdcd732a4b635c86a1b43a}} 
+const std\+::string \& {\bfseries get\+I\+S\+BN} () const
+\item 
+\mbox{\Hypertarget{classBook_a527ba637e1d53f576a1053b585a5a2d7}\label{classBook_a527ba637e1d53f576a1053b585a5a2d7}} 
+{\bfseries Book} (const std\+::string \&, const std\+::string \&, const std\+::string \&, const std\+::string \&, const int, const std\+::vector$<$ std\+::string $>$ \&, const double, const std\+::string \&)
+\item 
+\mbox{\Hypertarget{classBook_acfa629d5efd20ca022ff2352cb5f694d}\label{classBook_acfa629d5efd20ca022ff2352cb5f694d}} 
+{\bfseries Book} (const \hyperlink{classBook}{Book} \&)=default
+\item 
+\mbox{\Hypertarget{classBook_a04596dfcbb51d63e6289d157a58586ec}\label{classBook_a04596dfcbb51d63e6289d157a58586ec}} 
+\hyperlink{classBook}{Book} \& {\bfseries operator=} (const \hyperlink{classBook}{Book} \&)=default
+\item 
+\mbox{\Hypertarget{classBook_a62d93c42123190e41ac81af98558a7b4}\label{classBook_a62d93c42123190e41ac81af98558a7b4}} 
+{\bfseries Book} (\hyperlink{classBook}{Book} \&\&)
+\item 
+\mbox{\Hypertarget{classBook_a542ef4c3b209b0c7fe173ef963fcb5b3}\label{classBook_a542ef4c3b209b0c7fe173ef963fcb5b3}} 
+\hyperlink{classBook}{Book} \& {\bfseries operator=} (\hyperlink{classBook}{Book} \&\&)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+An entity class for a book 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classBook_a693f08d322fa1395e5bc1f864c380b66}\label{classBook_a693f08d322fa1395e5bc1f864c380b66}} 
+\index{Book@{Book}!obj\+To\+String@{obj\+To\+String}}
+\index{obj\+To\+String@{obj\+To\+String}!Book@{Book}}
+\subsubsection{\texorpdfstring{obj\+To\+String()}{objToString()}}
+{\footnotesize\ttfamily const std\+::string Book\+::obj\+To\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Object must contain a function that converts it to a csv string 
+
+Implements \hyperlink{classSerializable_ab9cd1db8311603ce4250478c3dd3eb81}{Serializable}.
+
+\mbox{\Hypertarget{classBook_af46441a304bd9d514fc9fb0cae3536cc}\label{classBook_af46441a304bd9d514fc9fb0cae3536cc}} 
+\index{Book@{Book}!print@{print}}
+\index{print@{print}!Book@{Book}}
+\subsubsection{\texorpdfstring{print()}{print()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Book\+::print (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Detailed output for book \mbox{\Hypertarget{classBook_adf345a9bf2403f9d1d56aa10b2c26d3e}\label{classBook_adf345a9bf2403f9d1d56aa10b2c26d3e}} 
+\index{Book@{Book}!print@{print}}
+\index{print@{print}!Book@{Book}}
+\subsubsection{\texorpdfstring{print()}{print()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Book\+::print (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{option }\end{DoxyParamCaption}) const}
+
+One line output with default output of author title and I\+S\+BN Depending on string could add year/tag/rating \mbox{\Hypertarget{classBook_a260ec829661a21befcf11a34e6c2aeca}\label{classBook_a260ec829661a21befcf11a34e6c2aeca}} 
+\index{Book@{Book}!string\+To\+Object@{string\+To\+Object}}
+\index{string\+To\+Object@{string\+To\+Object}!Book@{Book}}
+\subsubsection{\texorpdfstring{string\+To\+Object()}{stringToObject()}}
+{\footnotesize\ttfamily void Book\+::string\+To\+Object (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Object must contain a function that creates object from a csv string (result is absorbed by this) throws \hyperlink{structBadFormatException}{Bad\+Format\+Exception} if the object has limitations in terms of number of values 
+
+Implements \hyperlink{classSerializable_abaec34cf73821a3234cf4daea584eab3}{Serializable}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Project-\/\+Library/src/entities/Book.\+h\item 
+Project-\/\+Library/src/entities/Book.\+cpp\end{DoxyCompactItemize}

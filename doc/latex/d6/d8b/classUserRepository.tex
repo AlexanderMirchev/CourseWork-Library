@@ -1,0 +1,76 @@
+\hypertarget{classUserRepository}{}\section{User\+Repository Class Reference}
+\label{classUserRepository}\index{User\+Repository@{User\+Repository}}
+
+
+{\ttfamily \#include $<$User\+Repository.\+h$>$}
+
+
+
+Inheritance diagram for User\+Repository\+:
+% FIG 0
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classUserRepository_a282496e98e0cc0d377531575047adeab}{save\+Changes} () const =0
+\item 
+virtual const std\+::optional$<$ \hyperlink{classUser}{User} $>$ \hyperlink{classUserRepository_aeb49a2995f19e516e9d068cb082a9535}{get\+User\+By\+Username} (const std\+::string \&username) const =0
+\item 
+virtual void \hyperlink{classUserRepository_a0c4379dccea3126340993453b8156787}{add\+User} (const \hyperlink{classUser}{User} \&)=0
+\item 
+virtual void \hyperlink{classUserRepository_a32dbae2d045588d858b8f21550987577}{remove\+User\+By\+Username} (const std\+::string \&username)=0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Interface for C\+R\+UD operations for users 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classUserRepository_a0c4379dccea3126340993453b8156787}\label{classUserRepository_a0c4379dccea3126340993453b8156787}} 
+\index{User\+Repository@{User\+Repository}!add\+User@{add\+User}}
+\index{add\+User@{add\+User}!User\+Repository@{User\+Repository}}
+\subsubsection{\texorpdfstring{add\+User()}{addUser()}}
+{\footnotesize\ttfamily virtual void User\+Repository\+::add\+User (\begin{DoxyParamCaption}\item[{const \hyperlink{classUser}{User} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Adds user to current list of users if there is no matching username.
+
+Throws \hyperlink{structEntityAlreadyExistsException}{Entity\+Already\+Exists\+Exception}. 
+
+Implemented in \hyperlink{classUserRepositoryImpl_a61a12165d5160621002184655ab1a809}{User\+Repository\+Impl}.
+
+\mbox{\Hypertarget{classUserRepository_aeb49a2995f19e516e9d068cb082a9535}\label{classUserRepository_aeb49a2995f19e516e9d068cb082a9535}} 
+\index{User\+Repository@{User\+Repository}!get\+User\+By\+Username@{get\+User\+By\+Username}}
+\index{get\+User\+By\+Username@{get\+User\+By\+Username}!User\+Repository@{User\+Repository}}
+\subsubsection{\texorpdfstring{get\+User\+By\+Username()}{getUserByUsername()}}
+{\footnotesize\ttfamily virtual const std\+::optional$<$\hyperlink{classUser}{User}$>$ User\+Repository\+::get\+User\+By\+Username (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{username }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Returns optional value of user with username. 
+
+Implemented in \hyperlink{classUserRepositoryImpl_a4da14e2e63ff2971a81ab980994eb585}{User\+Repository\+Impl}.
+
+\mbox{\Hypertarget{classUserRepository_a32dbae2d045588d858b8f21550987577}\label{classUserRepository_a32dbae2d045588d858b8f21550987577}} 
+\index{User\+Repository@{User\+Repository}!remove\+User\+By\+Username@{remove\+User\+By\+Username}}
+\index{remove\+User\+By\+Username@{remove\+User\+By\+Username}!User\+Repository@{User\+Repository}}
+\subsubsection{\texorpdfstring{remove\+User\+By\+Username()}{removeUserByUsername()}}
+{\footnotesize\ttfamily virtual void User\+Repository\+::remove\+User\+By\+Username (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{username }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Removes user with username from current list of users if can be found.
+
+Throws \hyperlink{structEntityNotFoundException}{Entity\+Not\+Found\+Exception}. 
+
+Implemented in \hyperlink{classUserRepositoryImpl_a378218667dea52fcd31a345547b9e7cf}{User\+Repository\+Impl}.
+
+\mbox{\Hypertarget{classUserRepository_a282496e98e0cc0d377531575047adeab}\label{classUserRepository_a282496e98e0cc0d377531575047adeab}} 
+\index{User\+Repository@{User\+Repository}!save\+Changes@{save\+Changes}}
+\index{save\+Changes@{save\+Changes}!User\+Repository@{User\+Repository}}
+\subsubsection{\texorpdfstring{save\+Changes()}{saveChanges()}}
+{\footnotesize\ttfamily virtual void User\+Repository\+::save\+Changes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Writes current list of users to file 
+
+Implemented in \hyperlink{classUserRepositoryImpl_a9a4406e613a882f4f71b9325781264a5}{User\+Repository\+Impl}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Project-\/\+Library/src/repositories/User\+Repository.\+h\end{DoxyCompactItemize}

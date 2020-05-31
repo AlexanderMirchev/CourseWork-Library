@@ -1,0 +1,92 @@
+\hypertarget{classUserRepositoryImpl}{}\section{User\+Repository\+Impl Class Reference}
+\label{classUserRepositoryImpl}\index{User\+Repository\+Impl@{User\+Repository\+Impl}}
+
+
+{\ttfamily \#include $<$User\+Repository\+Impl.\+h$>$}
+
+
+
+Inheritance diagram for User\+Repository\+Impl\+:
+% FIG 0
+
+
+Collaboration diagram for User\+Repository\+Impl\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classUserRepositoryImpl_a9a4406e613a882f4f71b9325781264a5}{save\+Changes} () const override
+\item 
+const std\+::optional$<$ \hyperlink{classUser}{User} $>$ \hyperlink{classUserRepositoryImpl_a4da14e2e63ff2971a81ab980994eb585}{get\+User\+By\+Username} (const std\+::string \&username) const override
+\item 
+void \hyperlink{classUserRepositoryImpl_a61a12165d5160621002184655ab1a809}{add\+User} (const \hyperlink{classUser}{User} \&user) override
+\item 
+void \hyperlink{classUserRepositoryImpl_a378218667dea52fcd31a345547b9e7cf}{remove\+User\+By\+Username} (const std\+::string \&username) override
+\item 
+\hyperlink{classUserRepositoryImpl_a82b801af76fcbfd23d5ddf7f90b4154a}{User\+Repository\+Impl} (const std\+::string \&source\+File)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of \hyperlink{classUserRepository}{User\+Repository} 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classUserRepositoryImpl_a82b801af76fcbfd23d5ddf7f90b4154a}\label{classUserRepositoryImpl_a82b801af76fcbfd23d5ddf7f90b4154a}} 
+\index{User\+Repository\+Impl@{User\+Repository\+Impl}!User\+Repository\+Impl@{User\+Repository\+Impl}}
+\index{User\+Repository\+Impl@{User\+Repository\+Impl}!User\+Repository\+Impl@{User\+Repository\+Impl}}
+\subsubsection{\texorpdfstring{User\+Repository\+Impl()}{UserRepositoryImpl()}}
+{\footnotesize\ttfamily User\+Repository\+Impl\+::\+User\+Repository\+Impl (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{source\+File }\end{DoxyParamCaption})}
+
+May throw if sourcefile does not meet user requirements 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classUserRepositoryImpl_a61a12165d5160621002184655ab1a809}\label{classUserRepositoryImpl_a61a12165d5160621002184655ab1a809}} 
+\index{User\+Repository\+Impl@{User\+Repository\+Impl}!add\+User@{add\+User}}
+\index{add\+User@{add\+User}!User\+Repository\+Impl@{User\+Repository\+Impl}}
+\subsubsection{\texorpdfstring{add\+User()}{addUser()}}
+{\footnotesize\ttfamily void User\+Repository\+Impl\+::add\+User (\begin{DoxyParamCaption}\item[{const \hyperlink{classUser}{User} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Adds user to current list of users if there is no matching username.
+
+Throws \hyperlink{structEntityAlreadyExistsException}{Entity\+Already\+Exists\+Exception}. 
+
+Implements \hyperlink{classUserRepository_a0c4379dccea3126340993453b8156787}{User\+Repository}.
+
+\mbox{\Hypertarget{classUserRepositoryImpl_a4da14e2e63ff2971a81ab980994eb585}\label{classUserRepositoryImpl_a4da14e2e63ff2971a81ab980994eb585}} 
+\index{User\+Repository\+Impl@{User\+Repository\+Impl}!get\+User\+By\+Username@{get\+User\+By\+Username}}
+\index{get\+User\+By\+Username@{get\+User\+By\+Username}!User\+Repository\+Impl@{User\+Repository\+Impl}}
+\subsubsection{\texorpdfstring{get\+User\+By\+Username()}{getUserByUsername()}}
+{\footnotesize\ttfamily const std\+::optional$<$ \hyperlink{classUser}{User} $>$ User\+Repository\+Impl\+::get\+User\+By\+Username (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{username }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Returns optional value of user with username. 
+
+Implements \hyperlink{classUserRepository_aeb49a2995f19e516e9d068cb082a9535}{User\+Repository}.
+
+\mbox{\Hypertarget{classUserRepositoryImpl_a378218667dea52fcd31a345547b9e7cf}\label{classUserRepositoryImpl_a378218667dea52fcd31a345547b9e7cf}} 
+\index{User\+Repository\+Impl@{User\+Repository\+Impl}!remove\+User\+By\+Username@{remove\+User\+By\+Username}}
+\index{remove\+User\+By\+Username@{remove\+User\+By\+Username}!User\+Repository\+Impl@{User\+Repository\+Impl}}
+\subsubsection{\texorpdfstring{remove\+User\+By\+Username()}{removeUserByUsername()}}
+{\footnotesize\ttfamily void User\+Repository\+Impl\+::remove\+User\+By\+Username (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{username }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Removes user with username from current list of users if can be found.
+
+Throws \hyperlink{structEntityNotFoundException}{Entity\+Not\+Found\+Exception}. 
+
+Implements \hyperlink{classUserRepository_a32dbae2d045588d858b8f21550987577}{User\+Repository}.
+
+\mbox{\Hypertarget{classUserRepositoryImpl_a9a4406e613a882f4f71b9325781264a5}\label{classUserRepositoryImpl_a9a4406e613a882f4f71b9325781264a5}} 
+\index{User\+Repository\+Impl@{User\+Repository\+Impl}!save\+Changes@{save\+Changes}}
+\index{save\+Changes@{save\+Changes}!User\+Repository\+Impl@{User\+Repository\+Impl}}
+\subsubsection{\texorpdfstring{save\+Changes()}{saveChanges()}}
+{\footnotesize\ttfamily void User\+Repository\+Impl\+::save\+Changes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Writes current list of users to file 
+
+Implements \hyperlink{classUserRepository_a282496e98e0cc0d377531575047adeab}{User\+Repository}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Project-\/\+Library/src/repository-\/implementations/User\+Repository\+Impl.\+h\item 
+Project-\/\+Library/src/repository-\/implementations/User\+Repository\+Impl.\+cpp\end{DoxyCompactItemize}

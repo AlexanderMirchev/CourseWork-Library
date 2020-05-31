@@ -6,6 +6,9 @@
 
 #include "Serializable.h"
 
+/**
+ * An entity class for a user
+*/
 class User : public Serializable
 {
 
@@ -15,39 +18,27 @@ private:
     bool admin;
 
 public:
-    /*
-        See Serializable
-    */
     const std::string objToString() const override;
     void stringToObject(const std::string &) override;
 
-    /*
-        Returns boolean value to determine whether user is admin or not.
+    /**
+     * Boolean value if user has admin rights
     */
     bool isAdmin() const;
 
-    /*
-        Returns username string
-    */
     const std::string &getUsername() const;
 
-    /*
-        Returns boolean value whether the password matches user password.
+    /**
+     * Boolean value whether param password is the same as user password
     */
     bool authenticate(const std::string &password) const;
 
     User();
-
     User(const std::string &, const std::string &, const bool);
-    
     User(const User &) = default;
-    
     ~User() = default;
-    
     User &operator=(const User &) = default;
-    
     User(User &&);
-    
     User &operator=(User &&);
 };
 #endif

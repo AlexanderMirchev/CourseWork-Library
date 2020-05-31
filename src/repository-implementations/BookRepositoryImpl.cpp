@@ -22,8 +22,8 @@ void BookRepositoryImpl::fetch()
     }
     catch (const std::exception &e)
     {
-        throw BadFormatException();
         this->serializer = std::nullopt;
+        throw BadFormatException();
     }
 }
 void BookRepositoryImpl::removeSource()
